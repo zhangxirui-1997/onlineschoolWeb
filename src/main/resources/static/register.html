@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script type="text/javascript" src="./assets/js/jquery-3.3.1.js"></script>
+</head>
+<body>
+<form>
+    <input type="text" id="user" placeholder="账号">
+    <br>
+    <input type="text" id="pwd" placeholder="密码">
+    <br>
+    <input type="text" id="num" placeholder="邀请码">
+    <br>
+    <input type="button" value="13213" onclick="register()">
+</form>
+</body>
+</html>
+<script>
+    function register() {
+        var user=$("#user").val()
+        var pwd=$("#pwd").val()
+        var num=$("#num").val()
+        $.ajax({
+            url:'/RegisterServlet?user_phonenumber='+user+'&&user_password='+pwd+'&&Invitation_code='+num,
+            success:function (data) {
+                alert(data)
+            }
+        })
+    }
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script type="text/javascript" src="./assets/js/jquery-3.3.1.js"></script>
+</head>
+<body>
+<form>
+    <input type="text" id="user">
+    <br>
+    <input type="text" id="pwd">
+    <br>
+    <input type="button" value="13213" onclick="login()">
+</form>
+</body>
+</html>
+<script>
+    function login() {
+        var user=$("#user").val()
+        var pwd=$("#pwd").val()
+        $.ajax({
+            url:'/LoginServlet?user_phonenumber='+user+"&&user_password="+pwd,
+            success:function (data) {
+                alert(data)
+            }
+        })
+    }
+</script>
