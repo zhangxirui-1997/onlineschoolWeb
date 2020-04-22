@@ -1,8 +1,7 @@
 package com.example.demo.Servlet;
 
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.stereotype.Controller;
-import tools.Sha256;
+import com.example.demo.Tools.Sha256;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

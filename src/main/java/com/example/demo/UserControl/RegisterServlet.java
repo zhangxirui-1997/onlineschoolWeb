@@ -1,4 +1,4 @@
-package com.example.demo.Servlet;
+package com.example.demo.UserControl;
 
 import com.example.demo.Dao.RegisterDao;
 
@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Servlet implementation class RegisterServlet
+/*
+ * 开发须知：本servlet用来完成 用户注册 功能
+ * 输入的参数有两个：user_phonenumber（用户的手机号）、user_password（用户的密码）、用户的邀请码（string格式，可为空）
+ * 返回的参数有一个：
+ * 注册成功——返回“yes”（注册成功后要跳会登陆界面，让用户自行登陆，不可自动登陆）
+ * 注册失败——返回“no”
  */
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {

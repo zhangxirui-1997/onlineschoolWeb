@@ -1,4 +1,4 @@
-package com.example.demo.Servlet;
+package com.example.demo.UserControl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.Dao.LoginDao;
@@ -12,20 +12,28 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
+/*
+* 开发须知：本servlet用来完成 用户登陆 功能
+* 输入的参数有两个：user_phonenumber（用户的手机号）、user_password（用户的密码）
+* 返回的参数有一个：
+* 登陆成功——返回用户信息JSONObject。
+* 		   包括user_phonenumber、user_fakename（用户昵称）、user_reallyname（用户真实名字）、
+* 			  user_state（用户地区）、user_moneybag（用户的钱包），其他的不用管
+*
+* 登陆失败——返回“no”
+* */
+
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	
 	protected void service(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("UTF-8");
-		
-		/*
-		 * 鑾峰彇Android浼犺繃鏉ョ殑涓滆タ
-		 * */
+
 		String phonenumberstring=request.getParameter("user_phonenumber");  
         String passWordstring=request.getParameter("user_password");
         JSONObject i = null;
-        //鍦ㄦ湇鍔″櫒绔В鍐充腑鏂囦贡鐮侀棶棰�   
+
         //userName=NewString.getNewString(userName);  
         //passWord=NewString.getNewString(passWord);  
         System.out.println("用户手机号"+phonenumberstring);

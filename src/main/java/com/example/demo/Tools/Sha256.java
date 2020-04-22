@@ -7,9 +7,9 @@ import java.security.NoSuchAlgorithmException;
 public class Sha256 {
 
 	/**
-	 * ����javaԭ������ʵ��SHA256����
+	 * 利用java原生的类实现SHA256加密
 	 * 
-	 * @param str ���ܺ�ı���
+	 * @param str 加密后的报文
 	 * @return
 	 */
 	public static String getSHA256(String str) {
@@ -28,7 +28,7 @@ public class Sha256 {
 	}
 
 	/**
-	 * ��byteתΪ16����
+	 * 将byte转为16进制
 	 * 
 	 * @param bytes
 	 * @return
@@ -39,7 +39,7 @@ public class Sha256 {
 		for (int i = 0; i < bytes.length; i++) {
 			temp = Integer.toHexString(bytes[i] & 0xFF);
 			if (temp.length() == 1) {
-				// 1�õ�һλ�Ľ��в�0����
+				// 1得到一位的进行补0操作
 				stringBuffer.append("0");
 			}
 			stringBuffer.append(temp);
