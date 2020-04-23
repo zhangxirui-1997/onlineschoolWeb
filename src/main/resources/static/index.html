@@ -139,7 +139,6 @@
                                                         <li><a href="#">初一</a></li>
                                                         <li><a href="#">初二</a></li>
                                                         <li><a href="#">初三</a></li>
-                                                        <li><a href="#">初四</a></li>
                                                         <li><a href="#">初中专题</a></li>
                                                     </ul>
                                                 </li>
@@ -230,7 +229,7 @@
                     <div class="banner-content">
                         <h1 class="title">学习的新方式</h1>
                         <ul>
-                            <li><a class="main-btn" href="#"><span>+</span>我们的课程 </a></li>
+                            <li><a class="main-btn" href="#"><span>+</span>我们的课程</a></li>
                             <li><a class="main-btn-2 main-btn" href="#"><span>+</span> 学习更多课程</a></li>
                         </ul>
                     </div>
@@ -264,13 +263,15 @@
                                     <!--                                <div class="input-box">-->
                                     <!--                                    <i class="fal fa-search"></i>-->
                                     <!--                                    <input type="text" placeholder="Search Your Course">-->
-                                    <select id="stage" onchange="Change_second_selectwords();">
+
+                                    <select>
                                         <option  data-display="阶段">阶段</option>
                                         <option value="1">小学</option>
                                         <option value="2">初中</option>
                                         <option value="3">高中</option>
                                     </select>
                                 </div>
+
                                 <div class="dream-course-category d-none d-lg-inline-block">
                                     <!--                                    <select>-->
                                     <!--                                        <option data-display="Category">Category</option>-->
@@ -280,34 +281,22 @@
                                     <!--                                        <option value="5">Digital Marketing</option>-->
                                     <!--                                        <option value="6">Game Design</option>-->
                                     <!--                                    </select>-->
-                                    <select id="grade"><option data-display="年级">年级</option></select>
-                                    <script>
-                                        var first_keywords = {};
-                                        //定义每个字母对应的第二个下拉框
-                                        first_keywords['1'] = ['年级','一年级', '二年级', '三年级','四年级','五年级','六年级'];
-                                        first_keywords['2'] = ['年级','初一', '初二', '初三'];
-                                        first_keywords['3'] = ['年级','高一', '高二', '高三'];
-                                        function Change_second_selectwords() {
-                                            //根据id找到两个下拉框对象
-                                            var target1 = document.getElementById("stage");
-                                            var target2 = document.getElementById("grade");
-                                            //得到第一个下拉框的内容
-                                            var selected_stage = target1.options[target1.selectedIndex].value;
-
-                                            //清空第二个下拉框
-                                            while (target2.options.length) {
-                                                target2.remove(0);
-                                            }
-                                            //根据第一个下拉框的内容找到对应的列表
-                                            var stage_list = first_keywords[selected_stage];
-                                            if (stage_list) {
-                                                for (var i = 0; i < stage_list.length; i++) {
-                                                    //将列表中的内容加入到第二个下拉框
-                                                    target2.options.add(new Option(stage_list[i], i+""));
-                                                }
-                                            }
-                                        }
-                                    </script>
+                                    <select>
+                                        <!--                                        <option data-display="Price">Price</option>-->
+                                        <option data-display="年级">年级</option>
+                                        <option value="s1">一年级</option>
+                                        <option value="s2">二年级</option>
+                                        <option value="s3">三年级</option>
+                                        <option value="s4">四年级</option>
+                                        <option value="s5">五年级</option>
+                                        <option value="s6">六年级</option>
+                                        <option value="m1">初一</option>
+                                        <option value="m2">初二</option>
+                                        <option value="m3">初三</option>
+                                        <option value="h1">高一</option>
+                                        <option value="h2">高二</option>
+                                        <option value="h3">高三</option>
+                                    </select>
                                 </div>
                                 <div class="dream-course-category  d-none d-lg-inline-block">
                                     <select>
