@@ -259,16 +259,21 @@
                         </div>
                         <form action="#">
                             <div class="dream-course-search d-flex">
+
+                                <div class="dream-course-btn">
+                                    <button type="button">查询课程</button>
+                                </div>
                                 <!--                                新加下一行-->
                                 <div class="dream-course-category  d-none d-lg-inline-block">
                                     <!--                                <div class="input-box">-->
                                     <!--                                    <i class="fal fa-search"></i>-->
                                     <!--                                    <input type="text" placeholder="Search Your Course">-->
-                                    <select id="stage" onchange="Change_second_selectwords();">
-                                        <option  data-display="阶段">阶段</option>
-                                        <option value="1">小学</option>
-                                        <option value="2">初中</option>
-                                        <option value="3">高中</option>
+                                    <select id="high">
+                                        <option  data-display="高中">高中</option>
+                                        <option value="1">高一</option>
+                                        <option value="2">高二</option>
+                                        <option value="3">高三</option>
+                                        <option value="3">高中专题</option>
                                     </select>
                                 </div>
                                 <div class="dream-course-category d-none d-lg-inline-block">
@@ -280,53 +285,31 @@
                                     <!--                                        <option value="5">Digital Marketing</option>-->
                                     <!--                                        <option value="6">Game Design</option>-->
                                     <!--                                    </select>-->
-                                    <select id="grade"><option data-display="年级">年级</option></select>
-                                    <script>
-                                        var first_keywords = {};
-                                        //定义每个字母对应的第二个下拉框
-                                        first_keywords['1'] = ['年级','一年级', '二年级', '三年级','四年级','五年级','六年级'];
-                                        first_keywords['2'] = ['年级','初一', '初二', '初三'];
-                                        first_keywords['3'] = ['年级','高一', '高二', '高三'];
-                                        function Change_second_selectwords() {
-                                            //根据id找到两个下拉框对象
-                                            var target1 = document.getElementById("stage");
-                                            var target2 = document.getElementById("grade");
-                                            //得到第一个下拉框的内容
-                                            var selected_stage = target1.options[target1.selectedIndex].value;
+                                    <select id="junior">
+                                        <option data-display="初中">初中</option>
+                                        <option value="1">初一</option>
+                                        <option value="2">初二</option>
+                                        <option value="3">初三</option>
+                                        <option value="2">初四</option>
+                                        <option value="3">初中专题</option>
+                                    </select>
 
-                                            //清空第二个下拉框
-                                            while (target2.options.length) {
-                                                target2.remove(0);
-                                            }
-                                            //根据第一个下拉框的内容找到对应的列表
-                                            var stage_list = first_keywords[selected_stage];
-                                            if (stage_list) {
-                                                for (var i = 0; i < stage_list.length; i++) {
-                                                    //将列表中的内容加入到第二个下拉框
-                                                    target2.options.add(new Option(stage_list[i], i+""));
-                                                }
-                                            }
-                                        }
-                                    </script>
                                 </div>
                                 <div class="dream-course-category  d-none d-lg-inline-block">
-                                    <select>
+                                    <select id="primary">
                                         <!--                                        <option data-display="Price">Price</option>-->
-                                        <option data-display="科目">科目</option>
-                                        <option value="chinese">语文</option>
-                                        <option value="math">数学</option>
-                                        <option value="english">英语</option>
-                                        <option value="physics">物理</option>
-                                        <option value="chemistry">化学</option>
-                                        <option value="biology">生物</option>
-                                        <option value="politics">政治</option>
-                                        <option value="history">历史</option>
-                                        <option value="geography">地理</option>
+                                        <option data-display="小学">小学</option>
+                                        <option value="chinese">一年级</option>
+                                        <option value="math">二年级</option>
+                                        <option value="english">三年级</option>
+                                        <option value="physics">四年级</option>
+                                        <option value="chemistry">五年级</option>
+                                        <option value="biology">六年级</option>
+                                        <option value="politics">小学专题</option>
+
                                     </select>
                                 </div>
-                                <div class="dream-course-btn">
-                                    <button type="button">查询课程</button>
-                                </div>
+
                             </div>
                         </form>
                     </div>
