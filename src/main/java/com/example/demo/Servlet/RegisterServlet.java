@@ -27,13 +27,17 @@ public class RegisterServlet extends HttpServlet {
 		String phonenumberstring=request.getParameter("user_phonenumber");  
         String passWordstring=request.getParameter("user_password");
         String Invitation_code=request.getParameter("Invitation_code");
-        int i = 0;
+		String phoneCode = request.getParameter("phone_code");
+
+		int i = 0;
         //在服务器端解决中文乱码问题   
         //userName=NewString.getNewString(userName);  
         //passWord=NewString.getNewString(passWord);  
         System.out.println("注册账号："+phonenumberstring);
         System.out.println("注册密码："+passWordstring);
         System.out.println("邀请码"+Invitation_code);
+		System.out.println("验证码"+phoneCode);
+
         PrintWriter outPrintWriter=response.getWriter();
         RegisterDao thisregister = new RegisterDao();
         

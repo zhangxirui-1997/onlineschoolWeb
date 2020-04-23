@@ -7,24 +7,59 @@
 </head>
 <body>
 <form>
+    <!--    手机号-->
     <input type="text" id="user" placeholder="账号">
     <br>
     <input type="text" id="pwd" placeholder="密码">
     <br>
     <input type="text" id="num" placeholder="邀请码">
     <br>
+    <input type="text" id="phoneCode" placeholder="验证码">
+    <input type="button" value="获取" onclick="obtainPhoneCode()">
+    <br>
     <input type="button" value="13213" onclick="register()">
 </form>
 </body>
 </html>
 <script>
-    function register() {
-        var user=$("#user").val()
-        var pwd=$("#pwd").val()
-        var num=$("#num").val()
+    var iftrue;//用户输入验证码是否正确
+    function obtainPhoneCode() {
+        alert("验证码")
+        var user = $("#user").val()
         $.ajax({
-            url:'/RegisterServlet?user_phonenumber='+user+'&&user_password='+pwd+'&&Invitation_code='+num,
-            success:function (data) {
+            type : "get",
+            url: '/ObtainPhoneCodeServlet?user_phonenumber=' + user,
+            dataType : "text",
+            success: function (data) {
+                alert(data)
+                if ($("#yanzhengma").val() == data) iftrue = true;
+            }
+        })
+    }
+
+    function register() {
+        alert("需要验证验证码输入是否正确，直接打开注释")
+
+        // if (iftrue){
+        //    var user=$("#zhucenum").val()
+        //    var pwd=$("#zhucepwd").val()
+        //    var num=$("#zhucema").val()
+        //    $.ajax({
+        //       url:'/RegisterServlet?user_phonenumber='+user+'&&user_password='+pwd+'&&Invitation_code='+num,
+        //       success:function (data) {
+        //          alert(data)
+        //       }
+        //    })
+        // }else {
+        //    alert("验证码不正确")
+        // }
+
+        var user = $("#user").val()
+        var pwd = $("#pwd").val()
+        var num = $("#num").val()
+        $.ajax({
+            url: '/RegisterServlet?user_phonenumber=' + user + '&&user_password=' + pwd + '&&Invitation_code=' + num,
+            success: function (data) {
                 alert(data)
             }
         })

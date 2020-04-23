@@ -58,6 +58,27 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+<!--短信验证-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+
+        <dependency>
+                
+            <groupId>com.aliyun</groupId>
+                
+            <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+                
+            <version>1.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -66,6 +87,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+
         </plugins>
     </build>
 
