@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-
+<!--替换78、90~92、添加227的select标签、替换240、新增247~249-->
 <head>
 
     <!--====== Required meta tags ======-->
@@ -75,7 +75,8 @@
                             <form class="d-none d-md-inline-block" action="#">
                                 <div class="input-box">
                                     <i class="fal fa-search"></i>
-                                    <input type="text" placeholder="Search Your keyword">
+<!--                                    <input type="text" placeholder="Search Your keyword">-->
+                                        <input type="text" placeholder="搜索您的邀请码">
                                 </div>
                             </form>
                         </div>
@@ -83,12 +84,12 @@
                     <div class="col-lg-6 col-md-5 col-sm-7">
                         <div class="header-btns d-flex align-items-center justify-content-center justify-content-sm-end">
                             <ul>
-                                <li><a href="#"><i class="fal fa-user"></i> Become A Mentor</a></li>
+<!--                                <li><a href="#"><i class="fal fa-user"></i> Become A Mentor</a></li>-->
                                 <li><a href="#"><i class="fal fa-key"></i> Login Now</a></li>
                             </ul>
-                            <div class="trial-btns d-none d-lg-block">
-                                <a href="#">Start Free Trail</a>
-                            </div>
+<!--                            <div class="trial-btns d-none d-lg-block">-->
+<!--                                <a href="#">Start Free Trail</a>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -220,28 +221,69 @@
                         </div>
                         <form action="#">
                             <div class="dream-course-search d-flex">
-                                <div class="input-box">
-                                    <i class="fal fa-search"></i>
-                                    <input type="text" placeholder="Search Your Course">
+<!--                                新加下一行-->
+                                <div class="dream-course-category  d-none d-lg-inline-block">
+<!--                                <div class="input-box">-->
+<!--                                    <i class="fal fa-search"></i>-->
+<!--                                    <input type="text" placeholder="Search Your Course">-->
+                                    <select id="stage" onchange="Change_second_selectwords();">
+                                        <option  data-display="阶段">阶段</option>
+                                        <option value="1">小学</option>
+                                        <option value="2">初中</option>
+                                        <option value="3">高中</option>
+                                    </select>
                                 </div>
                                 <div class="dream-course-category d-none d-lg-inline-block">
-                                    <select>
-                                        <option data-display="Category">Category</option>
-                                        <option value="1">Web Developemtn</option>
-                                        <option value="2">Web Design</option>
-                                        <option value="4">UI/UX Design</option>
-                                        <option value="5">Digital Marketing</option>
-                                        <option value="6">Game Design</option>
-                                    </select>
+<!--                                    <select>-->
+<!--                                        <option data-display="Category">Category</option>-->
+<!--                                        <option value="1">Web Developemtn</option>-->
+<!--                                        <option value="2">Web Design</option>-->
+<!--                                        <option value="4">UI/UX Design</option>-->
+<!--                                        <option value="5">Digital Marketing</option>-->
+<!--                                        <option value="6">Game Design</option>-->
+<!--                                    </select>-->
+                                    <select id="grade"><option data-display="年级">年级</option></select>
+                                    <script>
+                                        var first_keywords = {};
+                                        //定义每个字母对应的第二个下拉框
+                                        first_keywords['1'] = ['年级','一年级', '二年级', '三年级','四年级','五年级','六年级'];
+                                        first_keywords['2'] = ['年级','初一', '初二', '初三'];
+                                        first_keywords['3'] = ['年级','高一', '高二', '高三'];
+                                        function Change_second_selectwords() {
+                                            //根据id找到两个下拉框对象
+                                            var target1 = document.getElementById("stage");
+                                            var target2 = document.getElementById("grade");
+                                            //得到第一个下拉框的内容
+                                            var selected_stage = target1.options[target1.selectedIndex].value;
+
+                                            //清空第二个下拉框
+                                            while (target2.options.length) {
+                                                target2.remove(0);
+                                            }
+                                            //根据第一个下拉框的内容找到对应的列表
+                                            var stage_list = first_keywords[selected_stage];
+                                            if (stage_list) {
+                                                for (var i = 0; i < stage_list.length; i++) {
+                                                    //将列表中的内容加入到第二个下拉框
+                                                    target2.options.add(new Option(stage_list[i], i+""));
+                                                }
+                                            }
+                                        }
+                                    </script>
                                 </div>
                                 <div class="dream-course-category  d-none d-lg-inline-block">
                                     <select>
-                                        <option data-display="Price">Price</option>
-                                        <option value="1">99$</option>
-                                        <option value="2">199$</option>
-                                        <option value="4">399$</option>
-                                        <option value="5">349$</option>
-                                        <option value="6">599$</option>
+<!--                                        <option data-display="Price">Price</option>-->
+                                        <option data-display="科目">科目</option>
+                                        <option value="chinese">语文</option>
+                                        <option value="math">数学</option>
+                                        <option value="english">英语</option>
+                                        <option value="physics">物理</option>
+                                        <option value="chemistry">化学</option>
+                                        <option value="biology">生物</option>
+                                        <option value="politics">政治</option>
+                                        <option value="history">历史</option>
+                                        <option value="geography">地理</option>
                                     </select>
                                 </div>
                                 <div class="dream-course-btn">
