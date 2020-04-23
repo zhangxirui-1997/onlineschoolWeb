@@ -53,81 +53,11 @@ public class OrderInfoServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		
-		/*//ʵ�����ͻ���
-		AlipayClient alipayClient = new DefaultAlipayClient(URL, API_ID,APP_PRIVATE_KEY
-				,"json", CHARSET, ALIPAY_PUBLIC_KEY,"RSA2");
 
-		//ʵ��������API��Ӧ��request��,�����ƺͽӿ����ƶ�Ӧ,��ǰ���ýӿ����ƣ�alipay.trade.app.pay
-		AlipayTradeAppPayRequest alirequest = new AlipayTradeAppPayRequest();
-
-		//SDK�Ѿ���װ���˹�������������ֻ��Ҫ����ҵ����������·���Ϊsdk��model��η�ʽ(model��biz_contentͬʱ���ڵ������ȡbiz_content)��
-		AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
-
-		model.setSubject(gradestring+classnumberstring);
-		model.setOutTradeNo(out_trade_no);
-		model.setTotalAmount(""+String.format("%.2f", price));
-		model.setProductCode("QUICK_MSECURITY_PAY");
-		alirequest.setBizModel(model);
-		AlipayTradeAppPayResponse aliresponse=null;
-		try {
-			aliresponse=alipayClient.sdkExecute(alirequest);
-			System.out.println(aliresponse.getBody());//����orderString ����ֱ�Ӹ��ͻ�������������������
-		} catch (AlipayApiException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		PrintWriter outPrintWriter=response.getWriter();
-		outPrintWriter.println(aliresponse.getBody());
-		outPrintWriter.close();*/
 		
 
 		
 		
-		/*SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//�������ڸ�ʽ
-		Double price=0d;
-		Double discount=0d;
-        try {
-			price=new FindClassDetailDao().FindClassPriceAction(gradestring, classnumberstring);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        String i ="" ;
-        String app_id="app_id=2021001140678754";
-        String method="method=alipay.trade.app.pay";
-        String charset="charset=utf-8";
-        String sign_type="sign_type=RSA2";
-        //��˵����Ѿ��Լ�д���ˣ�
-        //String sign="sign";
-        String timestamp="timestamp="+df.format(new Date()).toString();
-        String version="version=1.0";
-        String notify_url="notify_url=";
-        String biz_content="biz_content= {}";
-        String subject="subject=�γ̷�";
-        try {
-			String out_trade_no="out_trade_no="+new ALiPay().insertOrder(classnumberstring, phonestring, ordertable, price, 0d);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        String total_amount="total_amount="+String.format("%.2f", price);
-        String product_code="product_code=QUICK_MSECURITY_PAY";
-        
-        i=app_id+"&"+method+"&"+charset+"&"+sign_type+"&"+timestamp+"&"+version+"&"+notify_url+
-        		"&"+biz_content+"&"+subject;
-        
-        System.out.println("���ص�orderinfo"+i);
-        
-        response.setContentType("text/html;charset-UTF-8");
-        PrintWriter outPrintWriter=response.getWriter();
-        
-		outPrintWriter.println(i);
-		outPrintWriter.close();*/
+
 	}
 }

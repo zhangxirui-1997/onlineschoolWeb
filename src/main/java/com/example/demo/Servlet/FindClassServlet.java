@@ -18,16 +18,11 @@ public class FindClassServlet extends HttpServlet {
 	protected void service(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("UTF-8");
-		
-		/*
-		 * 鑾峰彇Android浼犺繃鏉ョ殑涓滆タ
-		 * */
+
 		String gradestring=request.getParameter("grade");  
         
         JSONArray i = null;
-        //鍦ㄦ湇鍔″櫒绔В鍐充腑鏂囦贡鐮侀棶棰�   
-        //userName=NewString.getNewString(userName);  
-        //passWord=NewString.getNewString(passWord);  
+
         System.out.println("查询课程所属年级"+gradestring);
         
         

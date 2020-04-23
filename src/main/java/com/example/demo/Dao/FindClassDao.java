@@ -2,52 +2,54 @@ package com.example.demo.Dao;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.Dao.Connect;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 public class FindClassDao {
 	private Connect connect=new Connect();
 	private Statement statement=null;
-	
+
 	public JSONArray FindClassAction(String gradestring) throws SQLException, Exception {
 		statement=(Statement) connect.begin();
 		String tablename="";
-		if (gradestring.equals("��һ")) {
+		if (gradestring.equals("高一")) {
 			tablename="high_grade_1";
-		}else if(gradestring.equals("�߶�")) {
+		}else if(gradestring.equals("高二")) {
 			tablename="high_grade_2";
-		}else if(gradestring.equals("����")) {
+		}else if(gradestring.equals("高三")) {
 			tablename="high_grade_3";
-		}else if (gradestring.equals("����ר��")) {
+		}else if (gradestring.equals("高中专题")) {
 			tablename="high_grade_special";
-		}else  if(gradestring.equals("��һ")) {
+		}else  if(gradestring.equals("初一")) {
 			tablename="junior_grade_1";
-		}else if(gradestring.equals("����")) {
+		}else if(gradestring.equals("初二")) {
 			tablename="junior_grade_2";
-		}else if(gradestring.equals("����")) {
+		}else if(gradestring.equals("初三")) {
 			tablename="junior_grade_3";
-		}else if(gradestring.equals("����")) {
+		}else if(gradestring.equals("初四")) {
 			tablename="junior_grade_4";
-		}else if (gradestring.equals("����ר��")) {
+		}else if (gradestring.equals("初中专题")) {
 			tablename="junior_grade_special";
-		}else if(gradestring.equals("һ�꼶")) {
+		}else if(gradestring.equals("一年级")) {
 			tablename="primary_grade_1";
-		}else if(gradestring.equals("�����")) {
+		}else if(gradestring.equals("二年纪")) {
 			tablename="primary_grade_2";
-		}else if(gradestring.equals("�����")) {
+		}else if(gradestring.equals("三年纪")) {
 			tablename="primary_grade_3";
-		}else if(gradestring.equals("���꼶")) {
+		}else if(gradestring.equals("四年级")) {
 			tablename="primary_grade_4";
-		}else if(gradestring.equals("���꼶")) {
+		}else if(gradestring.equals("五年级")) {
 			tablename="primary_grade_5";
-		}else if(gradestring.equals("���꼶")) {
+		}else if(gradestring.equals("六年级")) {
 			tablename="primary_grade_6";
-		}else if (gradestring.equals("Сѧר��")) {
+		}else if (gradestring.equals("小学专题")) {
 			tablename="primary_grade_special";
 		}
-		
+
 		String sqlString2 ="select * from "+tablename;
 		ResultSet rs2=statement.executeQuery(sqlString2);
 		JSONArray jsonArray=new JSONArray();
@@ -69,14 +71,14 @@ public class FindClassDao {
 			jsonArray.add(jsonObject);
 		}
 		if(jsonArray==null) {
-			System.out.println("û�в鵽�γ�");
+			System.out.println("没有查到课程");
 		}else {
-			System.out.println("�鵽�γ�"+jsonArray.toString());
+			System.out.println("查到课程"+jsonArray.toString());
 		}
-		
+
 		return jsonArray;
-		
+
 	}
 
-	
+
 }

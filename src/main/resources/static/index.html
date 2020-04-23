@@ -139,6 +139,7 @@
                                                         <li><a href="#">初一</a></li>
                                                         <li><a href="#">初二</a></li>
                                                         <li><a href="#">初三</a></li>
+                                                        <li><a href="#">初四</a></li>
                                                         <li><a href="#">初中专题</a></li>
                                                     </ul>
                                                 </li>
@@ -229,7 +230,7 @@
                     <div class="banner-content">
                         <h1 class="title">学习的新方式</h1>
                         <ul>
-                            <li><a class="main-btn" href="#"><span>+</span>我们的课程</a></li>
+                            <li><a class="main-btn" href="#"><span>+</span>我们的课程 </a></li>
                             <li><a class="main-btn-2 main-btn" href="#"><span>+</span> 学习更多课程</a></li>
                         </ul>
                     </div>
@@ -258,20 +259,23 @@
                         </div>
                         <form action="#">
                             <div class="dream-course-search d-flex">
+
+                                <div class="dream-course-btn">
+                                    <button type="button">查询课程</button>
+                                </div>
                                 <!--                                新加下一行-->
                                 <div class="dream-course-category  d-none d-lg-inline-block">
                                     <!--                                <div class="input-box">-->
                                     <!--                                    <i class="fal fa-search"></i>-->
                                     <!--                                    <input type="text" placeholder="Search Your Course">-->
-
-                                    <select>
-                                        <option  data-display="阶段">阶段</option>
-                                        <option value="1">小学</option>
-                                        <option value="2">初中</option>
-                                        <option value="3">高中</option>
+                                    <select id="high">
+                                        <option  data-display="高中">高中</option>
+                                        <option value="1">高一</option>
+                                        <option value="2">高二</option>
+                                        <option value="3">高三</option>
+                                        <option value="3">高中专题</option>
                                     </select>
                                 </div>
-
                                 <div class="dream-course-category d-none d-lg-inline-block">
                                     <!--                                    <select>-->
                                     <!--                                        <option data-display="Category">Category</option>-->
@@ -281,41 +285,31 @@
                                     <!--                                        <option value="5">Digital Marketing</option>-->
                                     <!--                                        <option value="6">Game Design</option>-->
                                     <!--                                    </select>-->
-                                    <select>
-                                        <!--                                        <option data-display="Price">Price</option>-->
-                                        <option data-display="年级">年级</option>
-                                        <option value="s1">一年级</option>
-                                        <option value="s2">二年级</option>
-                                        <option value="s3">三年级</option>
-                                        <option value="s4">四年级</option>
-                                        <option value="s5">五年级</option>
-                                        <option value="s6">六年级</option>
-                                        <option value="m1">初一</option>
-                                        <option value="m2">初二</option>
-                                        <option value="m3">初三</option>
-                                        <option value="h1">高一</option>
-                                        <option value="h2">高二</option>
-                                        <option value="h3">高三</option>
+                                    <select id="junior">
+                                        <option data-display="初中">初中</option>
+                                        <option value="1">初一</option>
+                                        <option value="2">初二</option>
+                                        <option value="3">初三</option>
+                                        <option value="2">初四</option>
+                                        <option value="3">初中专题</option>
                                     </select>
+
                                 </div>
                                 <div class="dream-course-category  d-none d-lg-inline-block">
-                                    <select>
+                                    <select id="primary">
                                         <!--                                        <option data-display="Price">Price</option>-->
-                                        <option data-display="科目">科目</option>
-                                        <option value="chinese">语文</option>
-                                        <option value="math">数学</option>
-                                        <option value="english">英语</option>
-                                        <option value="physics">物理</option>
-                                        <option value="chemistry">化学</option>
-                                        <option value="biology">生物</option>
-                                        <option value="politics">政治</option>
-                                        <option value="history">历史</option>
-                                        <option value="geography">地理</option>
+                                        <option data-display="小学">小学</option>
+                                        <option value="chinese">一年级</option>
+                                        <option value="math">二年级</option>
+                                        <option value="english">三年级</option>
+                                        <option value="physics">四年级</option>
+                                        <option value="chemistry">五年级</option>
+                                        <option value="biology">六年级</option>
+                                        <option value="politics">小学专题</option>
+
                                     </select>
                                 </div>
-                                <div class="dream-course-btn">
-                                    <button type="button">查询课程</button>
-                                </div>
+
                             </div>
                         </form>
                     </div>
