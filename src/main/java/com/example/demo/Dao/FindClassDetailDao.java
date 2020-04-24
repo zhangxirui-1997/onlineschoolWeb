@@ -14,32 +14,33 @@ public class FindClassDetailDao {
 	public JSONArray FindClassDetailAction(String gradestring,String numberstring) throws SQLException, Exception {
 		statement=(Statement) connect.begin();
 		String tablename="";
-		if (gradestring.equals("��һ")) {
+		if (gradestring.equals("高一")) {
 			tablename="high_grade_1";
-		}else if(gradestring.equals("�߶�")) {
+		}else if(gradestring.equals("高二")) {
 			tablename="high_grade_2";
-		}else if(gradestring.equals("����")) {
+		}else if(gradestring.equals("高三")) {
 			tablename="high_grade_3";
-		}else if(gradestring.equals("��һ")) {
+		}else if(gradestring.equals("初一")) {
 			tablename="junior_grade_1";
-		}else if(gradestring.equals("����")) {
+		}else if(gradestring.equals("初二")) {
 			tablename="junior_grade_2";
-		}else if(gradestring.equals("����")) {
+		}else if(gradestring.equals("初三")) {
 			tablename="junior_grade_3";
-		}else if(gradestring.equals("һ�꼶")) {
+		}else if(gradestring.equals("一年级")) {
 			tablename="primary_grade_1";
-		}else if(gradestring.equals("�����")) {
+		}else if(gradestring.equals("二年纪")) {
 			tablename="primary_grade_2";
-		}else if(gradestring.equals("�����")) {
+		}else if(gradestring.equals("三年纪")) {
 			tablename="primary_grade_3";
-		}else if(gradestring.equals("���꼶")) {
+		}else if(gradestring.equals("四年级")) {
 			tablename="primary_grade_4";
-		}else if(gradestring.equals("���꼶")) {
+		}else if(gradestring.equals("五年级")) {
 			tablename="primary_grade_5";
-		}else if(gradestring.equals("���꼶")) {
+		}else if(gradestring.equals("六年级")) {
 			tablename="primary_grade_6";
 		}
 		String sqlString2 ="select * from "+tablename+" where class_number =\'"+numberstring+"\'";
+
 		ResultSet rs2=statement.executeQuery(sqlString2);
 		JSONArray jsonArray=new JSONArray();
 		while (rs2.next()) {
@@ -73,7 +74,7 @@ public class FindClassDetailDao {
 			Statement statement2=null;
 			statement2=(Statement) connect2.begin();
 			String sqlString4 ="select * from "+next_class+" where classdetail_number =\'"+numberstring+"\'";
-			System.out.println("��ѯ��䣺"+sqlString4);
+			System.out.println("查询语句"+sqlString4);
 			ResultSet rs4=statement2.executeQuery(sqlString4);
 			JSONArray jsonArray4=new JSONArray();
 			while (rs4.next()) {
