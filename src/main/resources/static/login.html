@@ -68,7 +68,7 @@
                     <input id="zhucema" type="text" placeholder="邀请码" class="zhuce_psd"/>
 
                     <input id="yanzhengma" type="text" placeholder="验证码" class="zhuce_code"/>
-                    <input onclick="obtainPhoneCode()" type="button" value="获取" class="obtain_btn"/>
+                    <input id="obtainPhoneCode" onclick="" type="button" value="获取验证码" class="obtain_btn"/>
 
                     <input onclick="register()" type="button" value="立即注册" class="zhuce_btn"/>
                 </div>
@@ -111,7 +111,6 @@
 </div>
 <!--尾部结束-->
 <script>
-    var iftrue;//用户输入验证码是否正确
     function login() {
         var user = $("#usernum").val()
         var pwd = $("#password").val()
@@ -122,47 +121,65 @@
             }
         })
     }
+</script>
+<script type="text/javascript">
+    var waitTime = 60;
+    document.getElementById("obtainPhoneCode").onclick = function () {
+        obtainPhoneCode()
+        time(this);
+    }
+
+    function time(ele) {
+        if (waitTime == 0) {
+            ele.disabled = false;
+            ele.value = "获取验证码";
+            waitTime = 60;// 恢复计时
+        } else {
+            ele.disabled = true;
+            ele.value = waitTime + "秒后可以重新发送";
+            waitTime--;
+            setTimeout(function () {
+                time(ele)// 关键处-定时循环调用
+            }, 1000)
+        }
+    }
+</script>
+
+<script>
+    var backPhoneCode = "";
 
     function obtainPhoneCode() {
-        alert("验证码")
         var user = $("#zhucenum").val()
         $.ajax({
-            type: "get",
-            url: '/ObtainPhoneCodeServlet?user_phonenumber=' + user,
-            dataType: "text",
-            //返回后台获取的验证码，用于验证是否输入正确
+            type: "POST",
+            url: "http://localhost:8080/ObtainPhoneCodeServlet?user_phonenumber=" + user,
+            dateType: "json",
             success: function (data) {
-                alert(data)
-                if ($("#yanzhengma").val() == data) iftrue = true;
+                backPhoneCode = data;
             }
         })
     }
 
     function register() {
-       alert("需要验证验证码输入是否正确，直接打开注释")
-
-        // if (iftrue){
-        //    var user=$("#zhucenum").val()
-        //    var pwd=$("#zhucepwd").val()
-        //    var num=$("#zhucema").val()
-        //    $.ajax({
-        //       url:'/RegisterServlet?user_phonenumber='+user+'&&user_password='+pwd+'&&Invitation_code='+num,
-        //       success:function (data) {
-        //          alert(data)
-        //       }
-        //    })
-        // }else {
-        //    alert("验证码不正确")
-        // }
         var user = $("#zhucenum").val()
         var pwd = $("#zhucepwd").val()
         var num = $("#zhucema").val()
-        $.ajax({
-            url: '/RegisterServlet?user_phonenumber=' + user + '&&user_password=' + pwd + '&&Invitation_code=' + num,
-            success: function (data) {
-                alert(data)
+        var yzm = $("#yanzhengma").val()
+        if(yzm==null){
+            alert("验证码不能为空")
+        }else {
+            if (yzm.toString() == backPhoneCode.toString()) {
+                $.ajax({
+                    url: '/RegisterServlet?user_phonenumber=' + user + '&&user_password=' + pwd + '&&Invitation_code=' + num,
+                    success: function (data) {
+                        alert(data)
+                    }
+                })
+            } else {
+                alert("验证码不正确")
             }
-        })
+        }
+
     }
 </script>
 </body>
