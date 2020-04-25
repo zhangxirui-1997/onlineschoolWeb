@@ -16,10 +16,11 @@ public class CheckUser {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         JSONObject i = null;
 
-        //userName=NewString.getNewString(userName);
-        //passWord=NewString.getNewString(passWord);
         response.setContentType("text/html;charset-UTF-8");
-
+/*
+*
+* 获取session的信息
+* */
         PrintWriter outPrintWriter=response.getWriter();
         HttpSession session=request.getSession();
         i=(JSONObject) session.getAttribute("user");

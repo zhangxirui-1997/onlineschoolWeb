@@ -54,6 +54,10 @@ public class LoginServlet extends HttpServlet {
 		}
         
 		 if(i!=null) {
+        	/*
+        	*
+        	* 将登陆信息存进session
+        	* */
 			 HttpSession session=request.getSession();
 			 session.setAttribute("user",i);
 			System.out.print("登录成功");
