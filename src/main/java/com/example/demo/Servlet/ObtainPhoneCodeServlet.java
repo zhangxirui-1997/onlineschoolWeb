@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @Classname ObtainPhoneCodeServlet
@@ -33,10 +35,10 @@ public class ObtainPhoneCodeServlet extends HttpServlet {
 
         //获取注册手机号
         String phonenumberstring = request.getParameter("user_phonenumber");
-        System.out.println(phonenumberstring);
         //请求验证码  发送到手机
         String phoneCode = destPhoneUtil.phone(phonenumberstring);
-        System.out.println(phoneCode);
+        //String phoneCode = "123456";
+
         //返回给前端数据
         PrintWriter out = response.getWriter();
         out.print(phoneCode);

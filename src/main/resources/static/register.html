@@ -21,6 +21,7 @@
 </form>
 </body>
 </html>
+
 <script type="text/javascript">
     var waitTime = 60;
     document.getElementById("obtainPhoneCode").onclick = function() {
@@ -49,7 +50,7 @@
         var user = $("#user").val()
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/ObtainPhoneCodeServlet?user_phonenumber=" + user,
+            url: "/ObtainPhoneCodeServlet?user_phonenumber=" + user,
             dateType: "json",
             success: function (data) {
                 backPhoneCode=data;
