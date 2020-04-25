@@ -349,7 +349,7 @@
                             <span class="zhekou">折扣</span>
                         </div>
                         <div class="course-sidebar-btns">
-                            <a href="#"><i class="fal fa-shopping-cart"></i><span>立即登录</span> </a>
+                            <a href="javascript: buy()"><i class="fal fa-shopping-cart"></i><span>购买</span> </a>
                         </div>
                     </div>
                 </div>
@@ -410,8 +410,8 @@
                            '                                                <div class="col-lg-6">\n' +
                            '                                                    <div class="course-learn-item">\n' +
                            '                                                        <i class="fal fa-check"></i>\n' +
-                           '                                                        <p>课程名称：'+detail[i].classdetail_name+'时常：'+detail[i].classdetail_time_length
-                           +'课程类型：'+detail[i].classdetail_kind+'开课时间：'+detail[i].classdetail_updata_time+'</p>\n' +
+                           '                                                        <p>课程名称：'+detail[i].classdetail_name+'       时常：'+detail[i].classdetail_time_length
+                           +'       课程类型：'+detail[i].classdetail_kind+'       开课时间：'+detail[i].classdetail_updata_time+'</p>\n' +
                            '                                                    </div>\n' +
                            '                                                </div>\n' +
                            '                                            </div>')
@@ -420,6 +420,22 @@
                }
            })
        })
+
+       function buy() {
+           alert("我最帅")
+           $.ajax({
+               url:'/CheckUser',
+               success:function (data) {
+                   if(data=="no"){
+                       confirm("您还没有登录，请登录")
+                       window.location.href="./login.html"
+                   }
+                   else {
+                       alert("我也不知道下一步要跳到哪")
+                   }
+               }
+           })
+       }
    </script>
 
 
