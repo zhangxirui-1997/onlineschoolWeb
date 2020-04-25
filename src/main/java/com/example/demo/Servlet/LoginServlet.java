@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -53,6 +54,8 @@ public class LoginServlet extends HttpServlet {
 		}
         
 		 if(i!=null) {
+			 HttpSession session=request.getSession();
+			 session.setAttribute("user",i);
 			System.out.print("登录成功");
 			outPrintWriter.println(i);
 		 }else {
