@@ -117,7 +117,7 @@
         $.ajax({
             url: '/LoginServlet?user_phonenumber=' + user + "&&user_password=" + pwd,
             success: function (data) {
-                alert(data)
+                window.location.href="./index.html"
             }
         })
     }
