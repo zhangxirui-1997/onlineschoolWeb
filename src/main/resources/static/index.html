@@ -157,7 +157,7 @@
                                         </li>
                                         <li class="nav-item" style="text-align: center">
 <!--                                            <a class="page-scroll" href="#">Pages <i class="fal fa-angle-down"></i></a>-->
-                                            <a class="page-scroll" href="#">已购课程</a>
+                                            <a class="page-scroll" href="javascript: userbuy()">已购课程</a>
 <!--                                            <ul class="sub-menu">-->
 <!--                                                <li><a href="event.html">event</a></li>-->
 <!--                                                <li><a href="our-events.html">our event</a></li>-->
@@ -988,6 +988,22 @@
             })
         })
 
+        function userbuy() {
+            $.ajax({
+                url:'/CheckUser',
+                success:function (data) {
+                    if(data=="no"){
+                       alert("请先登录")
+                        window.location.href="./login.html"
+                    }
+                    else {
+                        var detail=JSON.parse(data)
+                        var userphone=detail.user_phonenumber
+                        alert("跳转易购界面"+userphone)
+                    }
+                }
+            })
+        }
     </script>
 
 </body></html>
