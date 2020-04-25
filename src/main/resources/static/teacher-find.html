@@ -146,7 +146,6 @@
                                                     <li><a href="#">初一</a></li>
                                                     <li><a href="#">初二</a></li>
                                                     <li><a href="#">初三</a></li>
-                                                    <li><a href="#">初四</a></li>
                                                     <li><a href="#">初中专题</a></li>
                                                 </ul>
                                             </li>
@@ -362,6 +361,7 @@
         <tr style="font-size: 20px">
             <th>教师工号</th>
             <th>教授年级</th>
+            <th>教师姓名</th>
             <th>教师简介</th>
             <th>教师亮点</th>
             <th>教师风采</th>
@@ -373,6 +373,44 @@
         </tbody>
     </table>
 </section>
+
+<script>
+    $(function () {
+        var grade=''
+        var url =decodeURI(decodeURI(location.search));
+        if(url.indexOf("?")!==-1){
+            var str = url.substr(1);
+            strs = str.split("&");
+            var key=new Array(strs.length);
+            var value=new Array(strs.length);
+            for(i=0;i<strs.length;i++){
+                key[i]=strs[i].split("=")[0]
+                value[i]=unescape(strs[i].split("=")[1]);
+                if(key[i]==="nianji"){
+                    grade=value[i]
+                }
+                console.log(key[i]+"="+value[i])
+            }
+        }
+        $.ajax({
+            url:'/FindTeacherServlet?grade='+grade,
+            dataType:'json',
+            success:function (data) {
+                $.each(data,function (i) {
+                    $("#show_tbody").append(' <tr>\n' +
+                        '                        <td>'+data[i].teacher_number+'</td>\n' +
+                        '                        <td>'+data[i].teacher_grade+'</td>\n' +
+                        '                        <td>'+data[i].teacher_name+'</td>\n' +
+                        '                        <td>'+data[i].teacher_introduce+'</td>\n' +
+                        '                        <td>'+data[i].teacher_light+'</td>\n' +
+                        '                        <td>'+data[i].teacher_imgpath+'</td>\n' +
+                        '                        <td>'+data[i].teacher_time+'</td>\n' +
+                        '                    </tr>')
+                })
+            }
+        })
+    })
+</script>
 
 <!--<script>-->
 <!--    $(function () {-->
