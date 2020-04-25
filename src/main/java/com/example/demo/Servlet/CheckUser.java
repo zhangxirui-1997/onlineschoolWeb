@@ -15,7 +15,8 @@ import java.io.PrintWriter;
 public class CheckUser extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          JSONObject i = null;
-
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset-UTF-8");
 /*
 *
