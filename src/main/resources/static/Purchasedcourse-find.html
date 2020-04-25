@@ -372,7 +372,7 @@
     </section>
     <script>
         $(function () {
-            var phonenumber='15033572679'
+            var phonenumber=''
             var url =decodeURI(decodeURI(location.search));
             if(url.indexOf("?")!=-1){
                 var str = url.substr(1);
@@ -382,8 +382,8 @@
                 for(i=0;i<strs.length;i++){
                     key[i]=strs[i].split("=")[0]
                     value[i]=unescape(strs[i].split("=")[1]);
-                    if(key[i]=="phonenumber"){
-                       nianji=value[i]
+                    if(key[i]=="userphone"){
+                       phonenumber=value[i]
                     }
                     console.log(key[i]+"="+value[i])
                 }
@@ -393,14 +393,8 @@
                 dataType:'json',
                 success:function (data) {
                     $.each(data,function (i,j) {
-                        var money=0
-                        if(data[i].class_discount>1){
-                            money=data[i].class_price-data[i].class_discount
-                        }
-                        if(data[i].class_discount<=1){
-                            money=data[i].class_price*data[i].class_discount;
-                        }
-                        $("#show_tbody").append(' <tr>\n' +
+                        var nianji=data[i].class_grade.substring(0,2)
+                        $("#show_tbody").append("<tr onclick='location.href="+'"buy-details.html?cnum="'+"+"+data[i].class_number+"+"+'"&&nianji='+nianji+'"'+"'>\n" +
                             '                        <td>'+data[i].class_big_title+'&nbsp;'+data[i].class_title+'</td>\n' +
                             '                        <td>'+data[i].class_howmanytimes+'次 /&nbsp;'+data[i].class_time_length+'小时</td>\n' +
                             '                        <td>'+data[i].class_teacher_one+'&nbsp;'+data[i].class_teacher_two+ '</td>\n' +
