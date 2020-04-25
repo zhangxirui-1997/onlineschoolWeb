@@ -20,7 +20,7 @@ public class FindTeacherDao {
 		}else if(gradestring.equals("初中")){
 			tablename="teacher_junior";
 		}else if(gradestring.equals("小学")){
-			tablename="teacher_permary";
+			tablename="teacher_primary";
 		}
 
 		String sqlString2 ="select * from "+tablename;
