@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <title>Aliplayer Online Settings</title>
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.8/skins/default/aliplayer-min.css"/>
+    <script type="text/javascript" charset="utf-8"
+            src="https://g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js"></script>
+</head>
+<body>
+<div class="prism-player" id="player-con"></div>
+<script>
+    // var videoPath=  "<%=req.getAttribute("+path+")%>";
+    // alert(videoPath)
+
+    var videoPath=location.href;
+    var i=videoPath.indexOf("=");
+    videoPath=videoPath.substring(i+1);
+    alert(videoPath)
+    var player = new Aliplayer({
+            "id": "player-con",
+            // "source": "https://outin-387d707565f111eaa4b500163e1c60dc.oss-cn-beijing.aliyuncs.com/sv/d311f4-1719f901fb2/d311f4-1719f901fb2.mp4?Expires=1587873329&OSSAccessKeyId=LTAI4FfD63zoqnm6ckiBFfXZ&Signature=IWoz7FelfiO9p8xIKvZOvf9atrs%3D",
+            "source": videoPath,
+            // "source": "https://outin-387d707565f111eaa4b500163e1c60dc.oss-cn-beijing.aliyuncs.com/sv/d311f4-1719f901fb2/d311f4-1719f901fb2.mp4?Expires=1587898980&OSSAccessKeyId=LTAI4FfD63zoqnm6ckiBFfXZ&Signature=KD0TD84XyR5x%2Fk90ovJ%2FX55Vf7I%3D",
+            "width": "100%",
+            "height": "500px",
+            "autoplay": false,
+            "isLive": false,
+            "rePlay": false,
+            "playsinline": false,
+            "preload": false,
+            "controlBarVisibility": "hover",
+            "useH5Prism": true
+        }, function (player) {
+            console.log("The player is created");
+        }
+    );
+</script>
+</body>
