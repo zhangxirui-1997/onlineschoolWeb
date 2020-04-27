@@ -384,8 +384,37 @@
         $(function () {
             var vs=$("#showshipin");
             var aliWebrtc = new AliRtcEngine();
+            aliWebrtc.on('onJoin',(data)=>{
+                console.log(data.userId);
+                console.log(data.displayName  + " 加入频道");
+
+                aliWebrtc.unPublish().then(()=>{
+                } ,(error)=>{
+                    console.log(error.message);
+                });
+
+                aliWebrtc.on('onPublisher',(publisher) =>{
+                    //远程发布者userId
+                    console.log(publisher.userId);
+                    //远程发布名字
+                    console.log(publisher.displayName);
+                    //远程流内容，streamConfigs是数组格式
+                    console.log(publisher.streamConfigs);
+
+                    userId=publisher.userId;
+                    aliWebrtc.subscribe(userId).then((userId)=>{
+                        aliWebrtc.setDisplayRemoteVideo(
+                            userId,       // 用户ID
+                            video,        // html中用于显示stream对象的video元素
+                            1             // 1表示摄像头流（大流和小流）和音频流，2表示屏幕分享流
+                        )
+                    },(error)=>{
+                        console.log(error.message);
+                    });
+                });
+            });
             $.ajax({
-                url:'/RTCTokenServlet?phonenumber=15033572679&&judge=0&&ChannelID=selfstudy1588773006000',
+                url:'/RTCTokenServlet?phonenumber=15033572679&&judge=0&&ChannelID=selfstudy1588815218000',
                 dataType:'json',
                 success:function (data) {
                     aliWebrtc.joinChannel({
@@ -397,64 +426,16 @@
                         gslb:[data.GSLB],           // gslb服务地址
                         token:data.Token,          //令牌
                     },vs).then(()=>{
-                        alert("success")
-
-
-                    var  userId=123456;
-                    var shiyong=15033572679;
-                    var displayname='hello'
-                        /* 取消本地流量 */
-                        aliWebrtc.unPublish().then(()=>{
-                            alert("取消本地")
-                        } ,(error)=>{
-                            alert("取消本地错误")
-                            console.log(error.message);
-                        });
-
-                    /*
-                   订阅远程流
-                   */
-                    aliWebrtc.subscribe(userId).then((userId)=>{
-                        aliWebrtc.setDisplayRemoteVideo(
-                            userId,       // 用户ID
-                        vs,        // html中用于显示stream对象的video元素
-                        1             // 1表示摄像头流（大流和小流）和音频流，2表示屏幕分享流
-                    )
-                },(error)=>{
-                        alert("订阅远程错误")
-                        console.log(error.message);
-                    });
+                        alert("入会成功");
                     // 入会成功
+
+
                 } ,(error)=>{
                         // 入会失败，打印错误内容，可以看到失败原因
                         console.log(error.message);
-                    });
-
-
-
-                    /*
-                    订阅回调
-                     */
-
-                    aliWebrtc.on('onPublisher',(publisher) =>{
-                        //远程发布者userId
-                        console.log(publisher.userId);
-                    //远程发布名字
-                    console.log(publisher.displayName);
-                    //远程流内容，streamConfigs是数组格式
-                    console.log(publisher.streamConfigs);
-                });
-                    aliWebrtc.on('onUnPublisher',(publisher) =>{
-                        //远程发布者userId
-                        console.log(publisher.userId);
-                    alert(publisher.userId);
-                    //远程发布名字
-                    console.log(publisher.displayName);
-                    alert(publisher.displayName)
-                });
-
-
+                    })
                 }
+
             })
         })
     </script>
