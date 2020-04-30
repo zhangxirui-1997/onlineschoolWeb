@@ -14,6 +14,7 @@
 </head>
 <body>
 <div class="prism-player" id="player-con"></div>
+<input type="hidden" id="usernum" >
 <script>
     // var videoPath=  "<%=req.getAttribute("+path+")%>";
     // alert(videoPath)
@@ -57,42 +58,45 @@
         }
         return password;
     }
+    var key=passwords();
     function check() {
         $.ajax({
             url:'/CheckUser',
             success:function (data) {
                     var detail=JSON.parse(data)
                     var userphone=detail.user_phonenumber
-                    var key=passwords();
+                    $("#usernum").val(userphone)
                     $.ajax({
                         url:'/EnsureServlet?phonenumber='+userphone+'&&key='+key+'&&judge=0',
                         success:function (data) {
 
                             if(data=='yes'){
-                                setInterval(checkone(userphone),1000)
                             }
                             if(data=='no'){
-                               check();
+
                             }
                         }
                     })
             }
         })
     }
-
-    function checkone(phone) {
-        var key=passwords();
+     check();
+    function checkone() {
+        var phone=$("#usernum").val()
         $.ajax({
             url:'/EnsureServlet?phonenumber='+phone+'&&key='+key+'&&judge=1',
             success:function (data) {
-               if(data=='no'){
-                   alert('您已登录')
-                   window.location.href="./login.html"
-               }
+                if(data=="yes"){
+                  alert("hello")
+                }
+                if(data=="no"){
+                   alert('您已异地登录')
+                    window.location.href="localhost:8080/login.html"
+                }
             }
         })
     }
+    setInterval(checkone,2000)
 
-    check();
 </script>
 </body>
