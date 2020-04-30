@@ -429,7 +429,7 @@
                 success:function (data) {
                     $.each(data,function (i,j) {
                         var nianji=data[i].class_grade.substring(0,2)
-                        $("#show_tbody").append("<tr onclick='location.href="+"'buy-details.html?cnum='"+"+"+data[i].class_number+"+"+'"&&nianji='+nianji+'"'+"'>\n" +
+                        $("#show_tbody").append("<tr onclick='location.href="+'"buy-details.html?cnum="'+"+"+data[i].class_number+"+"+'"&&nianji='+nianji+'"'+"'>\n" +
                             '                        <td>'+data[i].class_big_title+'&nbsp;'+data[i].class_title+'</td>\n' +
                             '                        <td>'+data[i].class_howmanytimes+'次 /&nbsp;'+data[i].class_time_length+'小时</td>\n' +
                             '                        <td>'+data[i].class_teacher_one+'&nbsp;'+data[i].class_teacher_two+ '</td>\n' +
