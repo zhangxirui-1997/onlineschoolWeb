@@ -85,11 +85,12 @@
         var phone=$("#usernum").val()
         $.ajax({
             url:'/EnsureServlet?phonenumber='+phone+'&&key='+key+'&&judge=1',
+            dataType:'json',
             success:function (data) {
-                if(data=="yes"){
-                  alert("hello")
+                if(data.judge=="yes"){
+
                 }
-                if(data=="no"){
+                if(data.judge=="no"){
                    alert('您已异地登录')
                     window.location.href="localhost:8080/login.html"
                 }
