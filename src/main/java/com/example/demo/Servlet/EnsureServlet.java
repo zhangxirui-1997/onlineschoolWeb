@@ -1,5 +1,6 @@
 package com.example.demo.Servlet;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.Dao.EnsureDao;
 
 import javax.servlet.ServletException;
@@ -41,13 +42,15 @@ public class EnsureServlet extends HttpServlet {
         PrintWriter outPrintWriter=response.getWriter();
         
         String i="";
+		JSONObject object=new JSONObject();
+
         if(result) {
         	i="yes";
         }else {
         	i="no";
         }
-        
-		outPrintWriter.println(i);
+		object.put("judge",i);
+		outPrintWriter.println(object);
 		outPrintWriter.close();
 	}
 
