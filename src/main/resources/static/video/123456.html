@@ -10,7 +10,7 @@
     <script type="text/javascript" charset="utf-8"
             src="https://g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js"></script>
 
-    <script src="./video/js/jquery-3.3.1.js"></script>
+    <script src="./js/jquery-3.3.1.js"></script>
 </head>
 <body>
 <div class="prism-player" id="player-con"></div>
@@ -69,7 +69,7 @@
                         success:function (data) {
 
                             if(data=='yes'){
-                               checkone(userphone)
+                                setInterval(checkone(userphone),1000)
                             }
                             if(data=='no'){
                                check();
