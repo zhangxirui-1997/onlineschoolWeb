@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.8/skins/default/aliplayer-min.css"/>
     <script type="text/javascript" charset="utf-8"
             src="https://g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js"></script>
+
+    <script src="./video/js/jquery-3.3.1.js"></script>
 </head>
 <body>
 <div class="prism-player" id="player-con"></div>
@@ -38,5 +40,59 @@
             console.log("The player is created");
         }
     );
+
+    //生成随机码
+    var pasArr = ['a','b','c','d','e','f','g','h','i','j','k',
+        'l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+        'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O',
+        'P','Q','R','S','T','U','V','W','X','Y','Z',
+        '0','1','2','3','4','5','6','7','8','9'];
+
+    function passwords() {
+        var password = '';
+        var pasArrLen = pasArr.length;
+        for (var i=0; i<6; i++){
+            var x = Math.floor(Math.random()*pasArrLen);
+            password += pasArr[x];
+        }
+        return password;
+    }
+    function check() {
+        $.ajax({
+            url:'/CheckUser',
+            success:function (data) {
+                    var detail=JSON.parse(data)
+                    var userphone=detail.user_phonenumber
+                    var key=passwords();
+                    $.ajax({
+                        url:'/EnsureServlet?phonenumber='+userphone+'&&key='+key+'&&judge=0',
+                        success:function (data) {
+
+                            if(data=='yes'){
+                               checkone(userphone)
+                            }
+                            if(data=='no'){
+                               check();
+                            }
+                        }
+                    })
+            }
+        })
+    }
+
+    function checkone(phone) {
+        var key=passwords();
+        $.ajax({
+            url:'/EnsureServlet?phonenumber='+phone+'&&key='+key+'&&judge=1',
+            success:function (data) {
+               if(data=='no'){
+                   alert('您已登录')
+                   window.location.href="./login.html"
+               }
+            }
+        })
+    }
+
+    check();
 </script>
 </body>
