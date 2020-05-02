@@ -286,22 +286,10 @@
                 <div class="col-lg-12">
                     <div class="dream-course-content">
                         <div class="dream-course-title text-center">
-                            <span>寻找你的心怡课程</span>
+                            <span><span>当前年级:<span id="grade"></span></span></span>
                         </div>
                         <form action="#">
                             <div class="dream-course-search d-flex">
-                                <!--                                新加下一行-->
-                                <div class="dream-course-category  d-none d-lg-inline-block">
-                                    <!--                                <div class="input-box">-->
-                                    <!--                                    <i class="fal fa-search"></i>-->
-                                    <!--                                    <input type="text" placeholder="Search Your Course">-->
-                                    <select id="stage" onchange="Change_second_selectwords();">
-                                        <option  data-display="阶段">阶段</option>
-                                        <option value="1">小学</option>
-                                        <option value="2">初中</option>
-                                        <option value="3">高中</option>
-                                    </select>
-                                </div>
                                 <div id="show" class="dream-course-category d-none d-lg-inline-block">
                                     <!--                                    <select>-->
                                     <!--                                        <option data-display="Category">Category</option>-->
@@ -311,45 +299,11 @@
                                     <!--                                        <option value="5">Digital Marketing</option>-->
                                     <!--                                        <option value="6">Game Design</option>-->
                                     <!--                                    </select>-->
-                                    <select id="grade" ><option data-display="年级">年级</option></select>
-                                    <script>
-                                        var first_keywords = {};
-                                        //定义每个字母对应的第二个下拉框
-                                        first_keywords['1'] = ['年级','一年级', '二年级', '三年级','四年级','五年级','六年级'];
-                                        first_keywords['2'] = ['年级','初一', '初二', '初三'];
-                                        first_keywords['3'] = ['年级','高一', '高二', '高三'];
-                                        function Change_second_selectwords() {
-                                            //根据id找到两个下拉框对象
-                                            var target1 = document.getElementById("stage");
-                                            var target2 = document.getElementById("grade");
-                                            //得到第一个下拉框的内容
-                                            var selected_stage = target1.options[target1.selectedIndex].value;
-
-                                            //清空第二个下拉框
-                                           // $("#grade").empty()
-                                            while (target2.options.length) {
-                                                target2.remove(0);
-                                            }
-                                            //根据第一个下拉框的内容找到对应的列表
-                                            var neirong='';
-                                            var stage_list = first_keywords[selected_stage];
-                                            if (stage_list) {
-                                                for (var i = 0; i < stage_list.length; i++) {
-                                                    //将列表中的内容加入到第二个下拉框
-                                                    neirong+='<option value="'+stage_list[i]+'" >'+stage_list[i]+'</option>'
-                                                }
-                                            }
-
-                                            $('#grade').selectpicker(neirong);
-                                            //render方法强制重新渲染引导程序 - 选择ui。
-                                            $('#grade').selectpicker('render');
-                                        }
-                                    </script>
                                 </div>
                                 <div class="dream-course-category  d-none d-lg-inline-block">
                                     <select id="chosesub" onchange="changesub()">
                                         <!--                                        <option data-display="Price">Price</option>-->
-                                        <option data-display="科目">科目</option>
+                                        <option data-display="科目">全部</option>
                                         <option value="chinese">语文</option>
                                         <option value="math">数学</option>
                                         <option value="english">英语</option>
@@ -360,9 +314,6 @@
                                         <option value="history">历史</option>
                                         <option value="geography">地理</option>
                                     </select>
-                                </div>
-                                <div class="dream-course-btn">
-                                    <button type="button">查询课程</button>
                                 </div>
                             </div>
                         </form>
@@ -411,6 +362,8 @@
                 console.log(key[i]+"="+value[i])
             }
         }
+
+        $("#grade").text(nianji)
         $(function () {
             $.ajax({
                 url:'/FindClassServlet?grade='+nianji,
