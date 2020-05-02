@@ -347,7 +347,7 @@
                                     </script>
                                 </div>
                                 <div class="dream-course-category  d-none d-lg-inline-block">
-                                    <select>
+                                    <select id="chosesub" onchange="changesub()">
                                         <!--                                        <option data-display="Price">Price</option>-->
                                         <option data-display="科目">科目</option>
                                         <option value="chinese">语文</option>
@@ -395,23 +395,23 @@
         </table>
     </section>
     <script>
-        $(function () {
-            var nianji=''
-            var url =decodeURI(decodeURI(location.search));
-            if(url.indexOf("?")!=-1){
-                var str = url.substr(1);
-                strs = str.split("&");
-                var key=new Array(strs.length);
-                var value=new Array(strs.length);
-                for(i=0;i<strs.length;i++){
-                    key[i]=strs[i].split("=")[0]
-                    value[i]=unescape(strs[i].split("=")[1]);
-                    if(key[i]=="nianji"){
-                       nianji=value[i]
-                    }
-                    console.log(key[i]+"="+value[i])
+        var nianji=''
+        var url =decodeURI(decodeURI(location.search));
+        if(url.indexOf("?")!=-1){
+            var str = url.substr(1);
+            strs = str.split("&");
+            var key=new Array(strs.length);
+            var value=new Array(strs.length);
+            for(i=0;i<strs.length;i++){
+                key[i]=strs[i].split("=")[0]
+                value[i]=unescape(strs[i].split("=")[1]);
+                if(key[i]=="nianji"){
+                    nianji=value[i]
                 }
+                console.log(key[i]+"="+value[i])
             }
+        }
+        $(function () {
             $.ajax({
                 url:'/FindClassServlet?grade='+nianji,
                 dataType:'json',
@@ -458,6 +458,43 @@
                 }
             }
            window.location.href="./course-details.html?nianji="+nianji+'&&cnum='+cnum
+        }
+
+        function changesub() {
+            var sub=$("#chosesub").find('option:checked').text()
+            alert(sub)
+            $.ajax({
+                url:'/FindClassServlet?grade='+nianji,
+                dataType:'json',
+                success:function (data) {
+                    $("#show_tbody").empty()
+                    $.each(data,function (i,j) {
+                        var ccc=data[i].class_grade.substring(data[i].class_grade.length-2)
+                        var money=0
+                        if(data[i].class_discount>1){
+                            money=data[i].class_price-data[i].class_discount
+                        }
+                        if(data[i].class_discount<=1){
+                            money=data[i].class_price*data[i].class_discount;
+                        }
+                        if(sub==ccc){
+                            $("#show_tbody").append(' <tr onclick="coursedetail('+data[i].class_number+')">\n' +
+                                '                        <td>'+data[i].class_big_title+'&nbsp;'+data[i].class_title+'</td>\n' +
+                                '                        <td>'+data[i].class_howmanytimes+'次 /&nbsp;'+data[i].class_time_length+'小时</td>\n' +
+                                '                        <td>'+data[i].class_teacher_one+'&nbsp;'+data[i].class_teacher_two+ '</td>\n' +
+                                '                        <td>'+data[i].class_grade+'</td>\n' +
+                                '                        <td>'+data[i].class_classification+'&nbsp; '+data[i].class_state+'</td>\n' +
+                                '                        <td>'+data[i].class_time+'</td>\n' +
+                                '                        <td>\n' +
+                                '<span style="font-size: 20px;color: #efad4f"> ￥'+money+' </span>'+
+                                '<span style="text-decoration: line-through;font-size: 20px;color: #efad4f;margin-left: 20px"> ￥ '+data[i].class_price+' </span>'+
+                                '                        </td>\n' +
+                                '                    </tr>')
+                        }
+                    })
+                }
+            })
+
         }
     </script>
 
