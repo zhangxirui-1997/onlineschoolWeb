@@ -13,7 +13,7 @@ h1{ font-weight:100; padding-bottom:30px;line-height:50px;padding-top:80px; text
 #tab li.current {color:#000; background:#fff}
 
 #content ul {display:none; width:340px;}
-.zhuce{ width:340px; height:150px; padding:30px}
+.zhuce{ width:340px; height:230px; padding:30px}
 input.zhuce_num,input.zhuce_psd,input.denglu_num,input.denglu_psd{height:40px; line-height:40px; line-height:40px; border-radius:2px; margin-bottom:20px;width:325px;color:#9d9d9e; border:1px solid #d8d8d8; padding-left:15px;  font-size:14px;}
 input.zhuce_btn,input.denglu_btn{ height:40px; line-height:40px; line-height:40px; border-radius:2px; margin-bottom:20px;clear:both;width:340px; text-align:center; color:#fff; background:-webkit-gradient(linear,left top,left bottom,from(#ffa93e),color-stop(.5,#ff7708),to(#ff7708)); border:0; font-size:16px;}
 
