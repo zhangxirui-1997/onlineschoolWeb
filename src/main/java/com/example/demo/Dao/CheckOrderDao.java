@@ -14,7 +14,7 @@ public class CheckOrderDao {
 		String sqlString="select * from "+ordertable+" WHERE order_user_phone= "+"\'"+phonenumber+"\'"+" and order_class_number="+"\'"+classnumber+"\'";
 		ResultSet rs=statement.executeQuery(sqlString);
 		while (rs.next()) {
-			if(rs.getString(6).trim().equals("���")) {
+			if(rs.getString(6).trim().equals("完成")) {
 				return "no";
 			}
 			
