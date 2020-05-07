@@ -1,7 +1,11 @@
 package com.example.demo.Servlet;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.Dao.CheckOrderDao;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -44,9 +48,10 @@ public class CheckOrderServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		JSONObject jsonObject=new JSONObject();
+		jsonObject.put("one",i);
 		System.out.print("详细查询结束,结果如下"+i);
-		outPrintWriter.println(i);
+		outPrintWriter.println(jsonObject);
 		outPrintWriter.close();
 	}
 

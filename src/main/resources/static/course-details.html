@@ -373,6 +373,8 @@
                             <span class="zhekou">折扣</span>
                         </div>
                         <div class="course-sidebar-btns">
+                            <input type="hidden" id="classnum">
+                            <input type="hidden" id="order">
                             <a href="javascript: buy()"><i class="fal fa-shopping-cart"></i><span>购买</span> </a>
                         </div>
                     </div>
@@ -427,6 +429,8 @@
                    $("#bookname").text(data[0].class_bookname)
                    $(".courseintroduce").text(data[0].class_introduce)
                    $(".teacher").text(data[0].class_teacher_two+"  "+data[0].class_teacher_one)
+                   $("#classnum").text(data[0].class_number)
+                   $("#order").text(data[0].class_next_order)
                    var detail=JSON.parse(data[0].class_detail)
 
                    $.each(detail,function (i,j) {
@@ -446,7 +450,6 @@
        })
 
        function buy() {
-           alert("我最帅")
            $.ajax({
                url:'/CheckUser',
                success:function (data) {
@@ -455,7 +458,24 @@
                        window.location.href="./login.html"
                    }
                    else {
-                       alert("我也不知道下一步要跳到哪")
+                       var user=JSON.parse(data)
+                       var classnum=$("#classnum").text()
+                       var order=$("#order").text()
+                       var phone=user.user_phonenumber;
+                       $.ajax({
+                           url:'/CheckOrderServlet?classnumber='+classnum+'&&phonenumber='+phone+'&&ordertable='+order,
+                           dataType:'json',
+                           success:function (dataz) {
+                               if(dataz.one=="yes"){
+                                   alert("请选择支付方式")
+                                   alert("我还不知咋写")
+                               }
+                               if(dataz.one=="no"){
+                                   alert("您已购买本课程，请前往已购课程查看")
+                                   alert("我就不给你跳转了，我嫌麻烦")
+                               }
+                           }
+                       })
                    }
                }
            })
