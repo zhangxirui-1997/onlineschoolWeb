@@ -55,8 +55,10 @@
                     <input id="zhucepwd" type="text" placeholder="请设置密码（6-16位）" class="zhuce_psd"/>
                     <input id="zhucema" type="text" placeholder="邀请码" class="zhuce_psd"/>
 
-                    <input id="yanzhengma" type="text" style="margin-bottom: 30px;width: 200px" placeholder="验证码" class="zhuce_num"/>
-                    <input id="obtainPhoneCode" onclick="" style="height: 42px;margin-left: 15px" type="button" value="获取验证码" class="obtain_btn"/>
+                    <input id="yanzhengma" type="text" style="margin-bottom: 30px;width: 200px" placeholder="验证码"
+                           class="zhuce_num"/>
+                    <input id="obtainPhoneCode" onclick="" style="height: 42px;margin-left: 15px" type="button"
+                           value="获取验证码" class="obtain_btn"/>
 
                     <input onclick="register()" type="button" value="立即注册" class="zhuce_btn"/>
                 </div>
@@ -99,7 +101,7 @@
         $.ajax({
             url: '/LoginServlet?user_phonenumber=' + user + "&&user_password=" + pwd,
             success: function (data) {
-                window.location.href="./index.html"
+                window.location.href = "./index.html"
             }
         })
     }
@@ -108,13 +110,16 @@
     var user = $("#zhucenum").val()
     var waitTime = 60;
     document.getElementById("obtainPhoneCode").onclick = function () {
-        if (getcookie(user)!=null){
-            alert("您已经获取过，请一会再试")
-            // alert(getcookie(user))
-        }else {
-            obtainPhoneCode()
-            time(this);
-        }
+        // if (getcookie(user)!=null){
+        //     alert("您已经获取过，请一会再试")
+        //     // alert(getcookie(user))
+        // }else {
+        //     obtainPhoneCode()
+        //     time(this);
+        // }
+
+        obtainPhoneCode()
+        time(this);
     }
 
     function time(ele) {
@@ -138,11 +143,11 @@
 
 
     //获取cookie
-    function getcookie(objname){//获取指定名称的cookie的值
+    function getcookie(objname) {//获取指定名称的cookie的值
         var arrstr = document.cookie.split("; ");
-        for(var i = 0;i < arrstr.length;i ++){
+        for (var i = 0; i < arrstr.length; i++) {
             var temp = arrstr[i].split("=");
-            if(temp[0] == objname) return unescape(temp[1]);
+            if (temp[0] == objname) return unescape(temp[1]);
             else return null;
         }
     }
@@ -166,13 +171,13 @@
         var pwd = $("#zhucepwd").val()
         var num = $("#zhucema").val()
         var yzm = $("#yanzhengma").val()
-        if(yzm==null){
+        if (yzm == null) {
             alert("验证码不能为空")
-        }else {
-            var cookiecode=getcookie(user);
-            if (cookiecode==null){
+        } else {
+            var cookiecode = getcookie(user);
+            if (cookiecode == null) {
                 alert("验证码已过期")
-            }else {
+            } else {
                 if (yzm.toString() == cookiecode.toString()) {
                     $.ajax({
                         url: '/RegisterServlet?user_phonenumber=' + user + '&&user_password=' + pwd + '&&Invitation_code=' + num,
