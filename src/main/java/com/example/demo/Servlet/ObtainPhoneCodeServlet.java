@@ -38,6 +38,7 @@ public class ObtainPhoneCodeServlet extends HttpServlet {
 
         Cookie cookie = new Cookie(phonenumberstring, phoneCode);
         cookie.setMaxAge(4*60);
+        System.out.println("15033572679     "+cookie.getPath());
         response.addCookie(cookie);
         //返回给前端数据
         PrintWriter out = response.getWriter();
