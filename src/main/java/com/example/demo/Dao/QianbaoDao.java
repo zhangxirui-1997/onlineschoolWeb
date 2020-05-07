@@ -32,7 +32,7 @@ public class QianbaoDao {
 			String price,String address_string,String phone_string,String invitation_string) throws Exception {
 		statement=(Statement)connect.begin();
     	String sqlString2="INSERT INTO "+ ordertable +"( order_user_phone, order_class_number,order_price,order_discount,order_time,order_appraise_number,order_appraise_text,Invitation_code,post_phone,post_address )"
-    			+ "VALUES (\'"+phonestring+"\',\'"+classnumberstring+"\',\'"+price+"\',\'1\',\'���\',\' \',\' \',\'"+invitation_string+"\',\'"+phone_string+"\',\'"+address_string+"\' )";
+    			+ "VALUES (\'"+phonestring+"\',\'"+classnumberstring+"\',\'"+price+"\',\'1\',\'完成\',\' \',\' \',\'"+invitation_string+"\',\'"+phone_string+"\',\'"+address_string+"\' )";
     	System.out.println(sqlString2);
     	statement.executeUpdate(sqlString2);
 	}
