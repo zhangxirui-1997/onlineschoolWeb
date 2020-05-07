@@ -386,26 +386,26 @@
     <!--====== COURSE DETAILS PART ENDS ======-->
     <script src="./assets/js/jquery-3.3.1.js"></script>
    <script>
-       $(function () {
-           var nianji=''
-           var cnum=''
-           var url =decodeURI(decodeURI(location.search));
-           if(url.indexOf("?")!=-1){
-               var str = url.substr(1);
-               strs = str.split("&");
-               var key=new Array(strs.length);
-               var value=new Array(strs.length);
-               for(i=0;i<strs.length;i++){
-                   key[i]=strs[i].split("=")[0]
-                   value[i]=unescape(strs[i].split("=")[1]);
-                   if(key[i]=="nianji"){
-                       nianji=value[i]
-                   }
-                   if(key[i]=="cnum"){
-                       cnum=value[i]
-                   }
+       var nianji=''
+       var cnum=''
+       var url =decodeURI(decodeURI(location.search));
+       if(url.indexOf("?")!=-1){
+           var str = url.substr(1);
+           strs = str.split("&");
+           var key=new Array(strs.length);
+           var value=new Array(strs.length);
+           for(i=0;i<strs.length;i++){
+               key[i]=strs[i].split("=")[0]
+               value[i]=unescape(strs[i].split("=")[1]);
+               if(key[i]=="nianji"){
+                   nianji=value[i]
+               }
+               if(key[i]=="cnum"){
+                   cnum=value[i]
                }
            }
+       }
+       $(function () {
            $.ajax({
                url:'/FindClassDetailServlet?grade='+nianji+'&&number='+cnum,
                dataType:'json',
@@ -468,7 +468,14 @@
                            success:function (dataz) {
                                if(dataz.one=="yes"){
                                    alert("请选择支付方式")
-                                   alert("我还不知咋写")
+                                   var pric=$("#newprice").text()
+                                   $.ajax({
+                                       url:'/QianbaoServlet?phonenumber='+phone+'&&classnumber='+classnum+'&&ordertable='+order+
+                                           '&&price='+pric+'&&grade='+nianji+'&&address_string=0&&phone_string=0&&invitation_string=0',
+                                       success:function (data) {
+                                           alert(data)
+                                       }
+                                   })
                                }
                                if(dataz.one=="no"){
                                    alert("您已购买本课程，请前往已购课程查看")
