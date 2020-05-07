@@ -397,6 +397,7 @@
     <!--====== COURSE DETAILS PART ENDS ======-->
     <script src="./assets/js/jquery-3.3.1.js"></script>
    <script>
+       var name="";
        $(function () {
            var nianji=''
            var cnum=''
@@ -433,12 +434,13 @@
                    var detail=JSON.parse(data[0].class_detail)
 
                    $.each(detail,function (i,j) {
+                       name=detail[i].classdetail_name;
                        $("#showcoursedel").append('<div onclick="seecourse(\''+detail[i].classdetail_path+'\')" class="row">\n' +
                            '                                                <div class="col-lg-6">\n' +
                            '                                                    <div class="course-learn-item">\n' +
                            '                                                        <i class="fal fa-check"></i>\n' +
                                 // '<a href="video/'+detail[i].classdetail_name+'.html">'+
-                                '<a href="/GetVideoServlet?id='+detail[i].classdetail_path+'">'+
+                                '<a href="/GetVideoServlet?name='+name+'&&id='+detail[i].classdetail_path+'">'+
                            '                                                        <p>课程名称：'+detail[i].classdetail_name+'       时常：'+detail[i].classdetail_time_length +
                            '       课程类型：'+detail[i].classdetail_kind+'       开课时间：'+detail[i].classdetail_updata_time+'</p></a>\n' +
                            '                                                    </div>\n' +

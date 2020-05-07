@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
-    <title>Aliplayer Online Settings</title>
+    <title>百学网络</title>
     <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.8/skins/default/aliplayer-min.css"/>
     <script type="text/javascript" charset="utf-8"
             src="https://g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js"></script>
@@ -13,16 +13,56 @@
     <script src="./js/jquery-3.3.1.js"></script>
 </head>
 <body>
-<div class="prism-player" id="player-con"></div>
-<input type="hidden" id="usernum" >
+
+<div class="prism-player" id="player-con" onclick="showTitle()">
+    <div id="classname" style="visibility:visible;position:absolute">
+    </div>
+</div>
+
+<script language="JavaScript">
+    function showTitle()
+    {
+        document.getElementById("classname").style.visibility="visible";
+        time();
+    }
+    var waitTime=7;
+    function time() {
+        if (waitTime == 0) {
+            document.getElementById("classname").style.visibility="hidden";
+            waitTime = 7;// 恢复计时
+        } else {
+            waitTime--;
+            setTimeout(function () {
+                time()// 关键处-定时循环调用
+            }, 1000)
+        }
+    }
+    //课程名
+    var s1 = location.href;
+    alert("location.href----"+s1)
+    var nameLeft=s1.indexOf("name");
+    nameLeft+=5;
+    var nameRight=s1.indexOf("&&path=");
+    var name=s1.substring(nameLeft,nameRight)
+    name=decodeURI(name);
+    //播放路径
+    var pathLeft=s1.indexOf("&&path=http")
+    var videoPath=s1.substring(pathLeft+7)
+    alert("真正的path"+videoPath)
+
+    //显示课程名
+    $("#classname").append('<div><font size="4" color="#FFFFFF">'+"正在播放:"+name+'</font></div>')
+
+</script>
+
+<input type="hidden" id="usernum">
 <script>
-    // var videoPath=  "<%=req.getAttribute("+path+")%>";
+
+    // var videoPath = s1.substring(4+1+name.length+2)
+    // var i2 = videoPath.indexOf("=");
+    // videoPath = videoPath.substring(i2 + 1);
     // alert(videoPath)
 
-    var videoPath=location.href;
-    var i=videoPath.indexOf("=");
-    videoPath=videoPath.substring(i+1);
-    alert(videoPath)
     var player = new Aliplayer({
             "id": "player-con",
             // "source": "https://outin-387d707565f111eaa4b500163e1c60dc.oss-cn-beijing.aliyuncs.com/sv/d311f4-1719f901fb2/d311f4-1719f901fb2.mp4?Expires=1587873329&OSSAccessKeyId=LTAI4FfD63zoqnm6ckiBFfXZ&Signature=IWoz7FelfiO9p8xIKvZOvf9atrs%3D",
@@ -30,83 +70,88 @@
             // "source": "https://outin-387d707565f111eaa4b500163e1c60dc.oss-cn-beijing.aliyuncs.com/sv/d311f4-1719f901fb2/d311f4-1719f901fb2.mp4?Expires=1587898980&OSSAccessKeyId=LTAI4FfD63zoqnm6ckiBFfXZ&Signature=KD0TD84XyR5x%2Fk90ovJ%2FX55Vf7I%3D",
             "width": "100%",
             "height": "600px",
+            // "height": "100%",
             "autoplay": false,
             "isLive": false,
             "rePlay": false,
             "playsinline": false,
             "preload": false,
-        // "controlBarVisibility": "hover",
-        "controlBarVisibility": "click",
-        // "controlBarVisibility": "always",
+            // "controlBarVisibility": "hover",
+            "controlBarVisibility": "click",
+            // "controlBarVisibility": "always",
             "useH5Prism": true
         }, function (player) {
             console.log("The player is created");
         }
     );
     //生成随机码
-    var pasArr = ['a','b','c','d','e','f','g','h','i','j','k',
-        'l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
-        'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O',
-        'P','Q','R','S','T','U','V','W','X','Y','Z',
-        '0','1','2','3','4','5','6','7','8','9'];
+    var pasArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+        'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+        'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
     function passwords() {
         var password = '';
         var pasArrLen = pasArr.length;
-        for (var i=0; i<6; i++){
-            var x = Math.floor(Math.random()*pasArrLen);
+        for (var i = 0; i < 6; i++) {
+            var x = Math.floor(Math.random() * pasArrLen);
             password += pasArr[x];
         }
         return password;
     }
-    var key=passwords();
+
+    var key = passwords();
+
     function check() {
         $.ajax({
-            url:'/CheckUser',
-            success:function (data) {
-                    var detail=JSON.parse(data)
-                    var userphone=detail.user_phonenumber
-                    $("#usernum").val(userphone)
-                    $.ajax({
-                        url:'/EnsureServlet?phonenumber='+userphone+'&&key='+key+'&&judge=0',
-                        success:function (data) {
+            url: '/CheckUser',
+            success: function (data) {
+                var detail = JSON.parse(data)
+                var userphone = detail.user_phonenumber
+                $("#usernum").val(userphone)
+                $.ajax({
+                    url: '/EnsureServlet?phonenumber=' + userphone + '&&key=' + key + '&&judge=0',
+                    success: function (data) {
 
-                            if(data=='yes'){
-                            }
-                            if(data=='no'){
-
-                            }
+                        if (data == 'yes') {
                         }
-                    })
+                        if (data == 'no') {
+
+                        }
+                    }
+                })
             }
         })
     }
-     check();
+
+    check();
+
     function checkone() {
-        var phone=$("#usernum").val()
+        var phone = $("#usernum").val()
         $.ajax({
-            url:'/EnsureServlet?phonenumber='+phone+'&&key='+key+'&&judge=1',
-            dataType:'json',
-            success:function (data) {
-                if(data.judge=="yes"){
+            url: '/EnsureServlet?phonenumber=' + phone + '&&key=' + key + '&&judge=1',
+            dataType: 'json',
+            success: function (data) {
+                if (data.judge == "yes") {
 
                 }
-                if(data.judge=="no"){
+                if (data.judge == "no") {
                     player.pause()
-                   alert('您已异地登录')
+                    alert('您已异地登录')
 
                     /*
                     * 请周学弟在此加入一个暂停的功能
                     * */
 
 
-
-                    window.location.href="http://localhost:8080/login.html"
+                    window.location.href = "http://localhost:8080/login.html"
                 }
             }
         })
     }
-    setInterval(checkone,2000)
+
+    setInterval(checkone, 2000)
 
 </script>
 </body>

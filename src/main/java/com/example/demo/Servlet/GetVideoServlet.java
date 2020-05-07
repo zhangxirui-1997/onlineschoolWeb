@@ -3,6 +3,7 @@ package com.example.demo.Servlet;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.vod.model.v20170321.GetPlayInfoResponse;
+import jdk.nashorn.internal.runtime.URIUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import static com.example.demo.Tools.videoUtil.GetClient.initVodClient;
@@ -29,6 +31,7 @@ public class GetVideoServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         String id = req.getParameter("id");
+        String name=req.getParameter("name");
         System.out.println();
         System.out.println("得到id了吗："+id);
         //播放地址
@@ -51,6 +54,9 @@ public class GetVideoServlet extends HttpServlet {
                 System.out.print("PlayInfo.PlayURL = " + playInfo.getPlayURL() + "\n");
                  path=playInfo.getPlayURL();
             }
+            //视频标题
+            String title = response.getVideoBase().getTitle();
+            name=title;
             System.out.print("得到路径了吗" + path + "\n");
             //Base信息
             System.out.print("VideoBase.Title = " + response.getVideoBase().getTitle() + "\n");
@@ -62,6 +68,8 @@ public class GetVideoServlet extends HttpServlet {
 //        req.setAttribute("path",path);
 //        req.getRequestDispatcher("/video/123456.html").forward(req, resp);
 
-        resp.sendRedirect("/video/123456.html?path="+path);
+        System.out.println("123456.html应该是这个name"+name);
+//        resp.sendRedirect("/video/123456.html?showname="+showname+"&&path="+path);
+        resp.sendRedirect("/video/123456.html?name="+ URLEncoder.encode(name,"utf-8")+"&&path="+path);
     }
 }
