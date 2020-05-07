@@ -33,8 +33,8 @@ public class ObtainPhoneCodeServlet extends HttpServlet {
         //获取注册手机号
         String phonenumberstring = request.getParameter("user_phonenumber");
         //请求验证码  发送到手机
-//        String phoneCode = destPhoneUtil.phone(phonenumberstring);
-        String phoneCode = "123456";
+        String phoneCode = destPhoneUtil.phone(phonenumberstring);
+//        String phoneCode = "123456";
 
         Cookie cookie = new Cookie(phonenumberstring, phoneCode);
         cookie.setMaxAge(4*60);
