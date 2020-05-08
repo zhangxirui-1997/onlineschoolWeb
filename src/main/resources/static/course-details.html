@@ -361,8 +361,7 @@
                 <div class="col-lg-4 col-md-7 col-sm-9">
                     <div class="course-details-sidebar white-bg">
                         <div class="course-sidebar-thumb">
-                            <img src="assets/images/course-sidebar-video-thumb.jpg" alt="course video">
-                            <a class="video-popup" href="https://www.youtube.com/watch?v=viHILXVY_eU"><i class="fas fa-play"></i></a>
+
                         </div>
                         <div class="course-sidebar-price d-flex justify-content-between align-items-center">
                             <h3><span style="font-size: 20px;color: #efad4f"> $ <span id="newprice"></span></span>
@@ -431,6 +430,7 @@
                    $(".teacher").text(data[0].class_teacher_two+"  "+data[0].class_teacher_one)
                    $("#classnum").text(data[0].class_number)
                    $("#order").text(data[0].class_next_order)
+                   $(".course-sidebar-thumb").append(' <a> <img src="http://123.57.235.123:8080/img/'+data[0].class_imgname+'" alt="course video"></a>\n')
                    var detail=JSON.parse(data[0].class_detail)
 
                    $.each(detail,function (i,j) {
