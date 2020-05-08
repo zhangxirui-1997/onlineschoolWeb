@@ -2612,8 +2612,10 @@ p {
 ===========================*/
 .footer-area {
   background: #001b61;
-  padding-top: 113px;
-  padding-bottom: 85px; }
+  /*padding-top: 113px;*/
+  /*padding-bottom: 85px; }*/
+  padding-top: 35px;
+  padding-bottom: 35px; }
   .footer-area .footer-item .footer-title {
     position: relative;
     padding-bottom: 15px;
