@@ -430,7 +430,8 @@
                    $(".teacher").text(data[0].class_teacher_two+"  "+data[0].class_teacher_one)
                    $("#classnum").text(data[0].class_number)
                    $("#order").text(data[0].class_next_order)
-                   $(".course-sidebar-thumb").append(' <a> <img src="http://123.57.235.123:8080/img/'+data[0].class_imgname+'" alt="course video"></a>\n')
+                   $(".course-sidebar-thumb").append('  <img src="http://123.57.235.123:8080/img/'+data[0].class_imgname+'" >\n' +
+                       '                            ')
                    var detail=JSON.parse(data[0].class_detail)
 
                    $.each(detail,function (i,j) {
