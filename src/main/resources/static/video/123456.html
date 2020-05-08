@@ -11,24 +11,47 @@
             src="https://g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js"></script>
 
     <script src="./js/jquery-3.3.1.js"></script>
+    <!--    播放标题的标签-->
+    <style>
+        div.back {
+            width: inherit;
+            height: 30px;
+            visibility:visible;
+            position: absolute;
+            background-color: #0a0a0a;
+            background-size: 500px 300px;
+            z-index: 100;
+        }
+
+        div.transbox {
+            color: #ffffff;
+            width: inherit;
+            height: 30px;
+            text-align: center;
+            /* 利用rgba设置一个纯白色半透明背景 */
+            background: rgba(98, 99, 99, 0.85);
+            z-index: 101;
+        }
+    </style>
 </head>
 <body>
 
 <div class="prism-player" id="player-con" onclick="showTitle()">
-    <div id="classname" style="visibility:visible;position:absolute">
+    <div class="back" id="classname">
     </div>
 </div>
 
 <script language="JavaScript">
-    function showTitle()
-    {
-        document.getElementById("classname").style.visibility="visible";
+    function showTitle() {
+        document.getElementById("classname").style.visibility = "visible";
         time();
     }
-    var waitTime=7;
+
+    var waitTime = 5;
+
     function time() {
         if (waitTime == 0) {
-            document.getElementById("classname").style.visibility="hidden";
+            document.getElementById("classname").style.visibility = "hidden";
             waitTime = 7;// 恢复计时
         } else {
             waitTime--;
@@ -37,21 +60,23 @@
             }, 1000)
         }
     }
+
     //课程名
     var s1 = location.href;
-    alert("location.href----"+s1)
-    var nameLeft=s1.indexOf("name");
-    nameLeft+=5;
-    var nameRight=s1.indexOf("&&path=");
-    var name=s1.substring(nameLeft,nameRight)
-    name=decodeURI(name);
+    alert("location.href----" + s1)
+    var nameLeft = s1.indexOf("name");
+    nameLeft += 5;
+    var nameRight = s1.indexOf("&&path=");
+    var name = s1.substring(nameLeft, nameRight)
+    name = decodeURI(name);
     //播放路径
-    var pathLeft=s1.indexOf("&&path=http")
-    var videoPath=s1.substring(pathLeft+7)
-    alert("真正的path"+videoPath)
+    var pathLeft = s1.indexOf("&&path=http")
+    var videoPath = s1.substring(pathLeft + 7)
+    alert("真正的path" + videoPath)
 
     //显示课程名
-    $("#classname").append('<div><font size="4" color="#FFFFFF">'+"正在播放:"+name+'</font></div>')
+    $("#classname").append('' +
+        '<div class="transbox"><font size="4" color="#FFFFFF">' + "正在播放:" + name + '</font></div>')
 
 </script>
 
