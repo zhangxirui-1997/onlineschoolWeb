@@ -107,26 +107,25 @@
     }
 </script>
 <script type="text/javascript">
-    var user = $("#zhucenum").val()
-    var waitTime = 60;
+    var waitTime = 5*60;
     document.getElementById("obtainPhoneCode").onclick = function () {
-        // if (getcookie(user)!=null){
-        //     alert("您已经获取过，请一会再试")
-        //     // alert(getcookie(user))
-        // }else {
-        //     obtainPhoneCode()
-        //     time(this);
-        // }
+        var user = $("#zhucenum").val()
+        if (getCookie(user)!=null){
+            alert("您已经获取过，请一会再试")
+        }else {
+            obtainPhoneCode()
+            time(this);
+        }
 
-        obtainPhoneCode()
-        time(this);
+        // obtainPhoneCode()
+        // time(this);
     }
 
     function time(ele) {
         if (waitTime == 0) {
             ele.disabled = false;
             ele.value = "获取验证码";
-            waitTime = 60;// 恢复计时
+            waitTime = 5*60;// 恢复计时
         } else {
             ele.disabled = true;
             ele.value = waitTime + "秒后重试";
@@ -139,18 +138,6 @@
 </script>
 
 <script>
-    var backPhoneCode = "";
-
-
-    //获取cookie
-    function getcookie(objname) {//获取指定名称的cookie的值
-        var arrstr = document.cookie.split("; ");
-        for (var i = 0; i < arrstr.length; i++) {
-            var temp = arrstr[i].split("=");
-            if (temp[0] == objname) return unescape(temp[1]);
-            else return null;
-        }
-    }
 
     //获取验证码
     function obtainPhoneCode() {
@@ -174,7 +161,7 @@
         if (yzm == null) {
             alert("验证码不能为空")
         } else {
-            var cookiecode = getcookie(user);
+            var cookiecode = getCookie(user);
             if (cookiecode == null) {
                 alert("验证码已过期")
             } else {
@@ -185,11 +172,40 @@
                             alert(data)
                         }
                     })
+                    deleteCookie(user,"/","localhost")
                 } else {
                     alert("验证码不正确")
                 }
             }
         }
+    }
+    /**
+     * js 删除 http cookie
+     * @7a686964616fe4b893e5b19e31333337613165param name   名字
+     * @param path   路径
+     * @param domain 域名
+     */
+    function deleteCookie(name,path,domain){
+        if(getCookie(name)) document.cookie= name+'='+
+            ((path)?';path='+path:'')+
+            ((domain)?';domain='+domain:'') +
+            ';expires=Thu,01-Jan-1970 00:00:01 GMT';
+    }
+
+    /**
+     * js取得http cookie
+     * @param name cookie名字
+     */
+    function getCookie(name) {
+        var start = document.cookie.indexOf( name + "=");
+        var len = start + name.length + 1;
+        if((!start)&&(name!=document.cookie.substring(0,name.length))){
+            return null;
+        }
+        if ( start == -1 ) return null;
+        var end = document.cookie.indexOf( ';', len );
+        if ( end == -1 ) end = document.cookie.length;
+        return unescape( document.cookie.substring( len, end ) );
     }
 </script>
 </body>
