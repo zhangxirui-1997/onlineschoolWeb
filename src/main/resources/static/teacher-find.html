@@ -93,7 +93,7 @@
                     <div class="header-btns d-flex align-items-center justify-content-center justify-content-sm-end">
                         <ul>
                             <!--                                <li><a href="#"><i class="fal fa-user"></i> Become A Mentor</a></li>-->
-                            <li><a href="#"><i class="fal fa-key"></i> 登录</a></li>
+                            <li id="showuser"><a href="#"><i class="fal fa-key"></i> 登录</a></li>
                         </ul>
                         <!--                            <div class="trial-btns d-none d-lg-block">-->
                         <!--                                <a href="#">Start Free Trail</a>-->
@@ -1000,14 +1000,14 @@
     $(function () {
         $.ajax({
             url:'/CheckUser',
+            dataType:'json',
             success:function (data) {
-                if(data=="no"){
+                if(data.one=="no"){
 
                 }
                 else {
-                    var detail=JSON.parse(data)
                     $("#showuser").empty()
-                    $("#showuser").append('<a href="#"><i class="fal fa-user"></i> 欢迎使用，'+detail.user_fakename+'</a></li>')
+                    $("#showuser").append('<a href="#"><i class="fal fa-user"></i> 欢迎使用，'+data.user_fakename+'</a></li>')
                 }
             }
         })
@@ -1016,14 +1016,14 @@
     function userbuy() {
         $.ajax({
             url:'/CheckUser',
+            dataType:'json',
             success:function (data) {
-                if(data=="no"){
+                if(data.one=="no"){
                     alert("请先登录")
                     window.location.href="./login.html"
                 }
                 else {
-                    var detail=JSON.parse(data)
-                    var userphone=detail.user_phonenumber
+                    var userphone=data.user_phonenumber
                     window.location.href='./Purchasedcourse-find.html?userphone='+userphone
                 }
             }

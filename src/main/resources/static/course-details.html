@@ -83,9 +83,9 @@
                     <div class="col-lg-6 col-md-5 col-sm-7">
                         <div class="header-btns d-flex align-items-center justify-content-center justify-content-sm-end">
                             <ul>
-                                <li><a href="./login.html"><i class="fal fa-key"></i> 登录</a></li>
+                                <li id="showuser"><a href="./login.html"><i class="fal fa-key"></i> 登录</a></li>
                             </ul>
-                            <div class="trial-btns d-none d-lg-block">
+                            <div id="showuser1" class="trial-btns d-none d-lg-block">
                                 <a href="./login.html">注册</a>
                             </div>
                         </div>
@@ -453,16 +453,16 @@
        function buy() {
            $.ajax({
                url:'/CheckUser',
+               dataType:'json',
                success:function (data) {
-                   if(data=="no"){
+                   if(data.one=="no"){
                        confirm("您还没有登录，请登录")
                        window.location.href="./login.html"
                    }
                    else {
-                       var user=JSON.parse(data)
                        var classnum=$("#classnum").text()
                        var order=$("#order").text()
-                       var phone=user.user_phonenumber;
+                       var phone=data.user_phonenumber;
                        $.ajax({
                            url:'/CheckOrderServlet?classnumber='+classnum+'&&phonenumber='+phone+'&&ordertable='+order,
                            dataType:'json',
@@ -633,14 +633,15 @@
         $(function () {
             $.ajax({
                 url:'/CheckUser',
+                dataType:'json',
                 success:function (data) {
-                    if(data=="no"){
+                    if(data.one=="no"){
 
                     }
                     else {
-                        var detail=JSON.parse(data)
                         $("#showuser").empty()
-                        $("#showuser").append('<a href="#"><i class="fal fa-user"></i> 欢迎使用，'+detail.user_fakename+'</a></li>')
+                        $("#showuser1").hide
+                        $("#showuser").append('<a href="#"><i class="fal fa-user"></i> 欢迎使用，'+data.user_fakename+'</a></li>')
                     }
                 }
             })
@@ -649,14 +650,14 @@
         function userbuy() {
             $.ajax({
                 url:'/CheckUser',
+                dataType:'json',
                 success:function (data) {
-                    if(data=="no"){
+                    if(data.one=="no"){
                         alert("请先登录")
                         window.location.href="./login.html"
                     }
                     else {
-                        var detail=JSON.parse(data)
-                        var userphone=detail.user_phonenumber
+                        var userphone=data.user_phonenumber
                         window.location.href='./Purchasedcourse-find.html?userphone='+userphone
                     }
                 }

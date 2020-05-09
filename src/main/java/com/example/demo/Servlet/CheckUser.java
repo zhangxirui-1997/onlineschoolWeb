@@ -30,7 +30,9 @@ public class CheckUser extends HttpServlet {
             outPrintWriter.println(i);
         }else {
             System.out.print("登录失败");
-            outPrintWriter.write("no");
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("one","no");
+            outPrintWriter.println(jsonObject);
         }
         outPrintWriter.close();
     }

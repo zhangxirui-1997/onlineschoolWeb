@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
+		JSONObject jsonObject=new JSONObject();
 		 if(i!=null) {
         	/*
         	*
@@ -61,11 +61,14 @@ public class LoginServlet extends HttpServlet {
 			 HttpSession session=request.getSession();
 			 session.setAttribute("user",i);
 			System.out.print("登录成功");
-			outPrintWriter.println(i);
+
+			 jsonObject.put("one",i);
+
 		 }else {
 			System.out.print("登录失败");
-			outPrintWriter.write("no");
+			jsonObject.put("one","no");
 		 }
+		 outPrintWriter.println(jsonObject);
 		 outPrintWriter.close();
 	}
 
