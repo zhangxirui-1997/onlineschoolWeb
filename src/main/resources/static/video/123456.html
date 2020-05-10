@@ -13,15 +13,23 @@
     <script src="./js/jquery-3.3.1.js"></script>
     <!--    播放标题的标签-->
     <style>
+        html{
+            height: 100%;
+        }
+        body{
+            height: 100%;
+        }
+
         div.back {
-            width: inherit;
+            width: 100%;
             height: 30px;
-            visibility:visible;
+            visibility: visible;
             position: absolute;
             /*background-color: #0a0a0a;*/
             background-size: 500px 300px;
             z-index: 100;
         }
+
 
         div.transbox {
             color: #ffffff;
@@ -37,8 +45,8 @@
 <body>
 
 <div class="prism-player" id="player-con" onclick="showTitle()">
-    <div class="back" id="classname">
-    </div>
+    <div class="showbox"></div>
+    <div class="back" id="classname"></div>
 </div>
 
 <script language="JavaScript">
@@ -94,8 +102,8 @@
             "source": videoPath,
             // "source": "https://outin-387d707565f111eaa4b500163e1c60dc.oss-cn-beijing.aliyuncs.com/sv/d311f4-1719f901fb2/d311f4-1719f901fb2.mp4?Expires=1587898980&OSSAccessKeyId=LTAI4FfD63zoqnm6ckiBFfXZ&Signature=KD0TD84XyR5x%2Fk90ovJ%2FX55Vf7I%3D",
             "width": "100%",
-            "height": "600px",
-            // "height": "100%",
+            // "height": "600px",
+            "height": "98%",
             "autoplay": false,
             "isLive": false,
             "rePlay": false,
