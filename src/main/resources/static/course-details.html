@@ -41,7 +41,72 @@
 
     <!--====== Style css ======-->
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        .button{
+            border: 0;    /* 去除原button边框样式 */
+            background-color: coral;
+            color: #fff;
+            padding: 1em 2em;
+        }
+        .button:hover{
+            background-color: #333;
+        }
+        .modal{
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0,0.5);
+        }
+        .modal-content{
+            background-color: #f4f4f4;
+            margin: 15% auto;
+            width: 50%;
+            box-shadow: 0 5px 8px 0 rgba(0, 0, 0,0.2), 0 7px 20px 0 rgba(0, 0, 0,0.2);
+            animation-name: modalopen;
+            animation-duration: 1s;
+        }
+        .modal-header h2,.modal-footer h3{
+            margin: 0;
+        }
+        .modal-header{
+            background-color: coral;
+            padding: 15px;
+            color: #fff;
+        }
+        .closeBtn{
+            color: #fff;
+            float: right;
+            font-size: 30px;
+        }
+        .closeBtn:hover,.closeBtn:focus{
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-body{
+            padding:10px 20px;
+        }
+        .modal-footer{
+            color: #fff;
+            background-color: coral;
+            padding: 10px;
+            text-align: center;
+        }
+        @keyframes modalopen{
+            from {opacity: 0}
+            to {opacity: 1}
+        }
+    </style>
 
 </head>
 
@@ -381,10 +446,53 @@
             </div>
         </div>
     </section>
-
-    <!--====== COURSE DETAILS PART ENDS ======-->
+    <div id="simpleModal" class="modal" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="closeBtn">&times;</span>
+                <h4>请选择支付方式</h4>
+            </div>
+            <div class="modal-body">
+               <input type="radio" name="qianbao" value="qianbao"> 钱包支付
+                <br>
+                <input type="radio" name="qianbao" value="zhifubao"> 支付宝支付
+            </div>
+            <div class="modal-footer">
+                <input class="closeBtn" type="button" onclick="paymoney()" value="确定" style="font-size: 15px;background-color: rgba(0, 0, 0,0.5)">
+            </div>
+        </div>
+    </div>
     <script src="./assets/js/jquery-3.3.1.js"></script>
    <script>
+       // 获取弹窗元素
+       var modal = document.getElementById("simpleModal");
+
+       // 获取关闭弹窗按钮元素
+       var closeBtn = document.getElementsByClassName("closeBtn")[0];
+
+
+       // 监听关闭弹窗事件
+       closeBtn.addEventListener("click",closeModal);
+
+       // 监听window关闭弹窗事件
+       window.addEventListener("click",outsideClick);
+
+       // 弹窗事件
+       function openModal () {
+           modal.style.display = "block";
+       }
+
+       // 关闭弹框事件
+       function closeModal () {
+           modal.style.display = "none";
+       }
+
+       // outsideClick
+       function outsideClick (e) {
+           if(e.target == modal){
+               modal.style.display = "none";
+           }
+       }
        var nianji=''
        var cnum=''
        var url =decodeURI(decodeURI(location.search));
@@ -460,6 +568,21 @@
                        window.location.href="./login.html"
                    }
                    else {
+                       openModal();
+                   }
+               }
+           })
+       }
+       function paymoney() {
+           $.ajax({
+               url:'/CheckUser',
+               dataType:'json',
+               success:function (data) {
+                   if(data.one=="no"){
+                       confirm("您还没有登录，请登录")
+                       window.location.href="./login.html"
+                   }
+                   else {
                        var classnum=$("#classnum").text()
                        var order=$("#order").text()
                        var phone=data.user_phonenumber;
@@ -468,15 +591,21 @@
                            dataType:'json',
                            success:function (dataz) {
                                if(dataz.one=="yes"){
-                                   alert("请选择支付方式")
+                                   var ccccv=$("input:radio[name='qianbao']:checked").val()
                                    var pric=$("#newprice").text()
-                                   $.ajax({
-                                       url:'/QianbaoServlet?phonenumber='+phone+'&&classnumber='+classnum+'&&ordertable='+order+
+                                   if(ccccv=='qianbao'){
+                                       $.ajax({
+                                           url:'/QianbaoServlet?phonenumber='+phone+'&&classnumber='+classnum+'&&ordertable='+order+
                                            '&&price='+pric+'&&grade='+nianji+'&&address_string=0&&phone_string=0&&invitation_string=0',
-                                       success:function (data) {
-                                           alert(data)
-                                       }
-                                   })
+                                           success:function (data) {
+                                               alert(data)
+                                           }
+                                       })
+                                   }
+                                   else {
+                                       alert('暂时未实现')
+                                   }
+
                                }
                                if(dataz.one=="no"){
                                    alert("您已购买本课程，请前往已购课程查看")
