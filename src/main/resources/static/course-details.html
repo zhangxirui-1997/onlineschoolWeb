@@ -597,8 +597,14 @@
                                        $.ajax({
                                            url:'/QianbaoServlet?phonenumber='+phone+'&&classnumber='+classnum+'&&ordertable='+order+
                                            '&&price='+pric+'&&grade='+nianji+'&&address_string=0&&phone_string=0&&invitation_string=0',
+                                           dataType:'json',
                                            success:function (data) {
-                                               alert(data)
+                                               if(data.one=='no'){
+                                                   alert("钱包钱不足，请充值")
+                                               }
+                                               else {
+                                                   alert('购买成功')
+                                               }
                                            }
                                        })
                                    }
@@ -607,15 +613,15 @@
                                    }
 
                                }
-                               if(data.one=="no"){
+                               if(dataz.one=="no"){
                                    alert("您已购买本课程，请前往已购课程查看")
-                                   alert("我就不给你跳转了，我嫌麻烦")
                                }
                            }
                        })
                    }
                }
            })
+           closeModal()
        }
    </script>
 

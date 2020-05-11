@@ -1,6 +1,7 @@
 package com.example.demo.Servlet;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.Dao.FindClassDetailDao;
 import com.example.demo.Dao.QianbaoDao;
 
@@ -49,8 +50,10 @@ public class QianbaoServlet extends HttpServlet {
 		}
 
 		Double price=Double.parseDouble(pricenumber);
+		JSONObject jsonObject=new JSONObject();
 		if(mynum<price) {//钱包的钱不够
-			outPrintWriter.write("no");
+			jsonObject.put("one","no");
+			outPrintWriter.println(jsonObject);
 		}else {
 			mynum=mynum-price;
 			JSONArray jsonArray=null;

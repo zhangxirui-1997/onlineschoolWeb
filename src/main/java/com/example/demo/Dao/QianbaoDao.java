@@ -15,7 +15,7 @@ public class QianbaoDao {
 		String sqlString="select * from "+table+" WHERE user_phonenumber= "+"\'"+phonenumberstring+"\'";
 		ResultSet rs=statement.executeQuery(sqlString);
 		rs.next();
-		System.out.println("��ѯ���˻����"+rs.getString(9));
+		System.out.println("hello"+rs.getString(9));
 		return Double.parseDouble(rs.getString(9));
 	}
 	
