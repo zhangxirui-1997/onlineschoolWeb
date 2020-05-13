@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="revised" content="Ningxia Seasons, 2015/8/13/" />
+<!-- 定义页面的最新版本 -->
+<meta name="description" content="网站简介" />
+<!-- 网站简介 -->
+<meta name="keywords" content="搜索关键字，以半角英文逗号隔开" />
+<!-- 搜索关键字 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>智学网课</title>
+
+
+<!-- CSS公共部分 开始 -->
+<link href="./pro/css/bootstrap.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<link href="./pro/css/style.css" rel="stylesheet">
+<!-- CSS公共部分 结束 -->
+
+<link href="./pro/css/crowdfunding.css" rel="stylesheet">
+
+</head>
+<body>
+<!-- top + banner 开始 -->
+<div class="container-fluid cfh_banner">
+  <div class="container"> <img src="./images/logo_bxjy.png">
+
+  </div>
+</div>
+<!-- top + banner 结束 --> 
+<!-- 核心 开始 --> 
+<div class="container border1 nopadding margin10">
+  <div id="vertical_navigation" class="col-lg-3 background831312 nopadding" style="height: 700px">
+    <div class="dead_pic"><img src="./pro/img/member_center/nopic.jpg.png"><br>
+      <span class="username"></span></div>
+    <div class="usertype">用户类型： 学生<br>
+    </div>
+    <div class="menu">
+      <div class="menu_title"> 我的信息 </div>
+      <div class="menu_list">
+        <ul class="list-unstyled">
+          <li id="listClick1" class="menu_list_on" onClick="listjump(1)"><img src="./pro/img/member_center/left_icon_1.png"> 基本信息</li>
+          <li id="listClick2" class="" onClick="listjump(2)"> <img src="./pro/img/member_center/left_icon_2.png"> 修改头像</li>
+          <li id="listClick4" class="" onClick="listjump(3)"> <img src="./pro/img/member_center/left_icon_3.png"> 修改密码</li>
+        </ul>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="menu_title"> 我相关的已购产品 </div>
+      <div class="menu_list">
+        <ul class="list-unstyled">
+          <li id="listClick6" class="" onClick="listjump(4)"><img src="./pro/img/member_center/left_icon_6.png"> 已购课程</li>
+        </ul>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="menu_title"> 我的资金管理 </div>
+      <div class="menu_list">
+        <ul class="list-unstyled">
+          <li id="listClick8" class="" onClick="listjump(5)"><img src="./pro/img/member_center/left_icon_8.png"> 我的账户</li>
+          <li id="listClick9" class="" onClick="listjump(6)"> <img src="./pro/img/member_center/left_icon_9.png"> 投资明细查询</li>
+          <li id="listClick10" class="" onClick="listjump(7)"> <img src="./pro/img/member_center/left_icon_10.png"> 申请退款</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-9">
+  	<iframe name="left" id="crowdfunding_iframe" src="my_info.html" frameborder="false" scrolling="no" style="border:none;" width="100%" height="700" allowtransparency="true"></iframe>
+  </div>
+</div>
+
+<!-- 核心 结束 -->  
+
+<!-- 版权 开始 -->
+
+<div class="container-fluid background_color545454">
+  <div class="container text-center"> © 2015 某某某 All rights reserved | 宁夏某某某金融科技服务有限公司 | 宁ICP备14000922号-2 </div>
+</div>
+<!-- 版权 结束 --> 
+
+<!-- 结束 --> 
+<!-- JS公共部分 开始 --> 
+<script src="./pro/js/jquery-2.1.1.min.js"></script>
+<script src="./pro/js/bootstrap.min.js"></script>
+<script src="./pro/js/basics.js"></script>
+<!-- JS公共部分 结束 --> 
+<script src="./pro/js/crowdfunding.js"></script>
+</body>
+<script>
+  function listjump(data) {
+      if(data==1){
+          $("#listClick_1").css("border-bottom","1px solid #C40521");
+          $("#listClick_1").css("color","#C40521");
+          $("#listClick_3").css("border-bottom","1px solid #CCC");
+          $("#listClick_3").css("color","#666");
+          $("#listClick_4").css("border-bottom","1px solid #CCC");
+          $("#listClick_4").css("color","#666");
+
+          $("#crowdfunding_iframe").attr("src","my_info.html");
+          $("#crowdfunding_iframe").attr("height","700");
+          $("#vertical_navigation").css("height","700px");
+
+          $("#listClick1").attr("class","menu_list_on");
+          $("#listClick2").attr("class","");
+          $("#listClick3").attr("class","");
+          $("#listClick4").attr("class","");
+          $("#listClick5").attr("class","");
+          $("#listClick6").attr("class","");
+          $("#listClick7").attr("class","");
+          $("#listClick8").attr("class","");
+          $("#listClick9").attr("class","");
+          $("#listClick10").attr("class","");
+          $("#listClick11").attr("class","");
+          $("#listClick12").attr("class","");
+          $("#listClick13").attr("class","");
+          $("#listClick14").attr("class","");
+          $("#listClick15").attr("class","");
+          $("#listClick16").attr("class","");
+      }
+      if(data==2){
+          $("#listClick_1").css("border-bottom","1px solid #C40521");
+          $("#listClick_1").css("color","#C40521");
+          $("#listClick_3").css("border-bottom","1px solid #CCC");
+          $("#listClick_3").css("color","#666");
+          $("#listClick_4").css("border-bottom","1px solid #CCC");
+          $("#listClick_4").css("color","#666");
+
+          $("#crowdfunding_iframe").attr("src","identity_prove.html");
+          $("#crowdfunding_iframe").attr("height","700");
+          $("#vertical_navigation").css("height","700px");
+
+          $("#listClick1").attr("class","menu_list_on");
+          $("#listClick2").attr("class","");
+          $("#listClick3").attr("class","");
+          $("#listClick4").attr("class","");
+          $("#listClick5").attr("class","");
+          $("#listClick6").attr("class","");
+          $("#listClick7").attr("class","");
+          $("#listClick8").attr("class","");
+          $("#listClick9").attr("class","");
+          $("#listClick10").attr("class","");
+          $("#listClick11").attr("class","");
+          $("#listClick12").attr("class","");
+          $("#listClick13").attr("class","");
+          $("#listClick14").attr("class","");
+          $("#listClick15").attr("class","");
+          $("#listClick16").attr("class","");
+  }
+      if(data==3){
+          $("#listClick_1").css("border-bottom","1px solid #C40521");
+          $("#listClick_1").css("color","#C40521");
+          $("#listClick_3").css("border-bottom","1px solid #CCC");
+          $("#listClick_3").css("color","#666");
+          $("#listClick_4").css("border-bottom","1px solid #CCC");
+          $("#listClick_4").css("color","#666");
+
+          $("#crowdfunding_iframe").attr("src","make_password.html");
+          $("#crowdfunding_iframe").attr("height","700");
+          $("#vertical_navigation").css("height","700px");
+
+          $("#listClick1").attr("class","menu_list_on");
+          $("#listClick2").attr("class","");
+          $("#listClick3").attr("class","");
+          $("#listClick4").attr("class","");
+          $("#listClick5").attr("class","");
+          $("#listClick6").attr("class","");
+          $("#listClick7").attr("class","");
+          $("#listClick8").attr("class","");
+          $("#listClick9").attr("class","");
+          $("#listClick10").attr("class","");
+          $("#listClick11").attr("class","");
+          $("#listClick12").attr("class","");
+          $("#listClick13").attr("class","");
+          $("#listClick14").attr("class","");
+          $("#listClick15").attr("class","");
+          $("#listClick16").attr("class","");
+      }
+      if(data==4){
+          window.location.href=''
+      }
+      if(data==5){
+          $("#listClick_1").css("border-bottom","1px solid #C40521");
+          $("#listClick_1").css("color","#C40521");
+          $("#listClick_3").css("border-bottom","1px solid #CCC");
+          $("#listClick_3").css("color","#666");
+          $("#listClick_4").css("border-bottom","1px solid #CCC");
+          $("#listClick_4").css("color","#666");
+
+          $("#crowdfunding_iframe").attr("src","my_account.html");
+          $("#crowdfunding_iframe").attr("height","700");
+          $("#vertical_navigation").css("height","700px");
+
+          $("#listClick1").attr("class","menu_list_on");
+          $("#listClick2").attr("class","");
+          $("#listClick3").attr("class","");
+          $("#listClick4").attr("class","");
+          $("#listClick5").attr("class","");
+          $("#listClick6").attr("class","");
+          $("#listClick7").attr("class","");
+          $("#listClick8").attr("class","");
+          $("#listClick9").attr("class","");
+          $("#listClick10").attr("class","");
+          $("#listClick11").attr("class","");
+          $("#listClick12").attr("class","");
+          $("#listClick13").attr("class","");
+          $("#listClick14").attr("class","");
+          $("#listClick15").attr("class","");
+          $("#listClick16").attr("class","");
+      }
+      if(data==6){
+
+      }
+      if(data==7){
+
+      }
+  }
+
+  $(function () {
+      $.ajax({
+          url:'/CheckUser',
+          dataType:'json',
+          success:function (data) {
+              $(".username").text(data.user_fakename)
+          }
+      })
+  })
+</script>
+</html>

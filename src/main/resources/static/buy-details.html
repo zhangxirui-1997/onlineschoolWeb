@@ -443,36 +443,6 @@
        function seecourse(cousrepath) {
                alert(cousrepath)
        }
-       function buy() {
-           $.ajax({
-               url:'/CheckUser',
-               success:function (data) {
-                   if(data=="no"){
-                       confirm("您还没有登录，请登录")
-                       window.location.href="./login.html"
-                   }
-                   else {
-                      var user=JSON.parse(data)
-                       var classnum=$("#classnum").text()
-                       var order=$("#order").text()
-                       var phone=user.user_phonenumber;
-                       $.ajax({
-                           url:'/CheckOrderServlet?classnumber='+classnum+'&&phonenumber='+phone+'&&ordertable='+order,
-                           success:function (data) {
-                              if(data=="yes"){
-                                 alert("请选择支付方式")
-                                  alert("我还不知咋写")
-                              }
-                              if(data=="no"){
-                                  alert("您已购买本课程，请前往已购课程查看")
-                                  alert("我就不给你跳转了，我嫌麻烦")
-                              }
-                           }
-                       })
-                   }
-               }
-           })
-       }
    </script>
 
 
