@@ -1,5 +1,6 @@
 package com.example.demo.Servlet;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.Dao.ReplacePasswordDao;
 
 import javax.servlet.ServletException;
@@ -25,7 +26,7 @@ public class ReplacePasswordServlet extends HttpServlet {
 		
 		PrintWriter outPrintWriter=response.getWriter();
 		ReplacePasswordDao replacePasswordDao=new ReplacePasswordDao();
-		 
+		JSONObject jsonObject=new JSONObject();
 		int i=2;
 		try {
 			i=replacePasswordDao.upthisdata(phonenumberstring, passWordstring);
@@ -34,10 +35,11 @@ public class ReplacePasswordServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		if(i==1) {
-			outPrintWriter.write("yes");
+			jsonObject.put("one","yes");
 		}else {
-			outPrintWriter.write("no");
+			jsonObject.put("one","no");
 		}
+		outPrintWriter.println(jsonObject);
 		outPrintWriter.close();
 	}
 
