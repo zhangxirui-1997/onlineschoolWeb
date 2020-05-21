@@ -29,7 +29,12 @@
 <!-- top + banner 开始 -->
 <div class="container-fluid cfh_banner">
   <div class="container"> <img src="./images/logo_bxjy.png">
-
+    <ul class="list-inline">
+      <li><a href="index.html" target="_self">首页</a></li>
+      <li><a href="list_page.html" target="_self">云教室</a></li>
+      <li><a href="" target="_self">关于我们</a></li>
+      <li><a href="service_page.html" target="_self">联系方式</a></li>
+    </ul>
   </div>
 </div>
 <!-- top + banner 结束 --> 
@@ -58,16 +63,16 @@
         </ul>
       </div>
     </div>
-    <div class="menu">
+   <!-- <div class="menu">
       <div class="menu_title"> 我的资金管理 </div>
-     <!-- <div class="menu_list">
+      <div class="menu_list">
         <ul class="list-unstyled">
           <li id="listClick8" class="" onClick="listjump(5)"><img src="./pro/img/member_center/left_icon_8.png"> 我的账户</li>
           <li id="listClick9" class="" onClick="listjump(6)"> <img src="./pro/img/member_center/left_icon_9.png"> 投资明细查询</li>
           <li id="listClick10" class="" onClick="listjump(7)"> <img src="./pro/img/member_center/left_icon_10.png"> 申请退款</li>
         </ul>
-      </div>-->
-    </div>
+      </div>
+    </div>-->
   </div>
   <div class="col-lg-9">
   	<iframe name="left" id="crowdfunding_iframe" src="my_info.html" frameborder="false" scrolling="no" style="border:none;" width="100%" height="700" allowtransparency="true"></iframe>
@@ -92,6 +97,17 @@
 <script src="./pro/js/crowdfunding.js"></script>
 </body>
 <script>
+
+    function userbuy() {
+        $.ajax({
+            url:'/CheckUser',
+            dataType:'json',
+            success:function (data) {
+                var userphone=data.user_phonenumber
+                window.location.href='./Purchasedcourse-find.html?userphone='+userphone
+            }
+        })
+    }
   function listjump(data) {
       if(data==1){
           $("#listClick_1").css("border-bottom","1px solid #C40521");
@@ -181,7 +197,7 @@
           $("#listClick16").attr("class","");
       }
       if(data==4){
-          window.location.href=''
+         userbuy();
       }
       if(data==5){
           $("#listClick_1").css("border-bottom","1px solid #C40521");
