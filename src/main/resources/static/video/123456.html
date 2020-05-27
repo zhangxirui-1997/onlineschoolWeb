@@ -71,7 +71,6 @@
 
     //课程名
     var s1 = location.href;
-    alert("location.href----" + s1)
     var nameLeft = s1.indexOf("name");
     nameLeft += 5;
     var nameRight = s1.indexOf("&&path=");
@@ -80,7 +79,6 @@
     //播放路径
     var pathLeft = s1.indexOf("&&path=http")
     var videoPath = s1.substring(pathLeft + 7)
-    alert("真正的path" + videoPath)
 
     //显示课程名
     $("#classname").append('' +
